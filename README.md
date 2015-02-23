@@ -1,2 +1,2 @@
 # SudokuSolver
-Cross-platform mobile application for solving Sudoku puzzlez, written using Apache Cordova and PhoneGap.
+Cross-platform mobile application for solving Sudoku puzzles, written using Apache Cordova and PhoneGap.
