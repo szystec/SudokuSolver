@@ -24,6 +24,11 @@
   <preference name="ios-statusbarstyle" value="black-opaque" />
   <preference name="android-installLocation" value="auto" />
 
+  <gap:plugin name="org.apache.cordova.camera"/>
+  <gap:plugin name="org.apache.cordova.media-capture"/>
+  <gap:plugin name="org.apache.cordova.console"/>
+  <gap:plugin name="org.apache.cordova.device"/>
+
   <icon src="icon.png" />
   <icon gap:platform="android" gap:density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
   <icon gap:platform="android" gap:density="mdpi" src="res/icon/android/icon-48-mdpi.png" />
