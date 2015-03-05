@@ -11,52 +11,146 @@
   <script src="js/jquery.mobile-1.4.0.js"></script>
 </head>
 
-<body>
+<body onLoad="onLoad()">
   <div data-role="page" class="" id="mainPage">
     <div data-role="header" class="">
       <h1>Sudoku Photo Solver</h1>
       <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
-      <a href="#camera" data-icon="camera" data-iconpos="notext">Camera</a>
+      <a href="#" id="camera" data-icon="camera" data-iconpos="notext">Camera</a>
     </div>
+
+
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
+      <div>
+        <p>
+          Image should be here.
+          <img id="myImage" src="">
+        </p>
+      </div>
+
+
       <table>
 
-        <colgroup><col><col><col></colgroup>
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
         <tbody>
-         <tr>
-           <td>1</td> <td></td>  <td>6</td>   <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
-         </tr>
-         <tr>
-           <td></td> <td>9</td>  <td>3</td>   <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
-         </tr>
-         <tr>
-           <td>1</td> <td></td>  <td>3</td>   <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
-         </tr>
-       </tbody>
-
-       <colgroup><col><col><col></colgroup>
-       <tbody>
           <tr>
-            <td>1</td> <td></td>  <td>3</td>  <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
+            <td>1</td>
+            <td></td>
+            <td>6</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
           </tr>
           <tr>
-            <td>1</td> <td></td>  <td>3</td>   <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
+            <td></td>
+            <td>9</td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
           </tr>
           <tr>
-            <td>1</td> <td></td>  <td>3</td>   <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
           </tr>
         </tbody>
 
-        <colgroup><col><col><col></colgroup>
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
         <tbody>
           <tr>
-            <td>1</td> <td></td>  <td>3</td>   <td>6</td> <td></td> <td>4</td>  <td>7</td> <td></td> <td>9</td>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
           </tr>
           <tr>
-            <td>1</td> <td></td>  <td>3</td>   <td>6</td> <td></td> <td>4</td>  <td>7</td> <td></td> <td>9</td>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
           </tr>
           <tr>
-            <td>1</td> <td></td>  <td>3</td>  <td>6</td> <td></td> <td>4</td>   <td>7</td> <td></td> <td>9</td>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
+          </tr>
+        </tbody>
+
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td></td>
+            <td>3</td>
+            <td>6</td>
+            <td></td>
+            <td>4</td>
+            <td>7</td>
+            <td></td>
+            <td>9</td>
           </tr>
         </tbody>
       </table>
@@ -78,6 +172,7 @@
         </li>
       </ul>
     </div>
+
     <!-- /panel -->
 
     <!-- <div data-role="content" class="">
