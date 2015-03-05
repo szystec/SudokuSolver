@@ -2,20 +2,19 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.sudokuphotosolver" version="1.0.0">
   <name>Sudoku Photo Solver</name>
   <description>
-    Sudoku Solver via Image Analysis is a cross-platform mobile phone application
-    that captures Sudoku Puzzles with the device’s inbuilt camera, enables user
-    to play puzzle on the mobile device and provides an option to automatically
-    solve it.
+    Sudoku Solver via Image Analysis is a cross-platform mobile phone application that captures Sudoku Puzzles with the device’s inbuilt camera, enables user to play puzzle on the mobile device and provides an option to automatically solve it.
   </description>
   <author href="http://uk.linkedin.com/in/szymonstec" email="szy.stec@gmail.com">
-      Szymon Stec
+    Szymon Stec
   </author>
 
-  <content src="index.html"/>
+  <content src="index.html" />
 
   <feature name="http://api.phonegap.com/1.0/device" />
+  <feature name="http://api.phonegap.com/1.0/camera" />
+  <feature name="http://api.phonegap.com/1.0/file" />
   <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true"/>
+    <param name="ios-package" value="CDVStatusBar" onload="true" />
   </feature>
 
   <preference name="orientation" value="portrait" />
@@ -24,10 +23,10 @@
   <preference name="ios-statusbarstyle" value="black-opaque" />
   <preference name="android-installLocation" value="auto" />
 
-  <gap:plugin name="org.apache.cordova.camera"/>
-  <gap:plugin name="org.apache.cordova.media-capture"/>
-  <gap:plugin name="org.apache.cordova.console"/>
-  <gap:plugin name="org.apache.cordova.device"/>
+  <gap:plugin name="org.apache.cordova.camera" />
+  <gap:plugin name="org.apache.cordova.media-capture" />
+  <gap:plugin name="org.apache.cordova.console" />
+  <gap:plugin name="org.apache.cordova.device" />
 
   <icon src="icon.png" />
   <icon gap:platform="android" gap:density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
