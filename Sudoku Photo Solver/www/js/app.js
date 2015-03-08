@@ -24,6 +24,8 @@ cameraApp.prototype = {
 
   run: function() {
     var that = this;
+    that._pictureSource = navigator.camera.PictureSourceType;
+    that._destinationType = navigator.camera.DestinationType;
     id("cameraBtn").addEventListener("click", function() {
       that._capturePhoto(that, arguments);
     });
