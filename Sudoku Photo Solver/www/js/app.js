@@ -1,47 +1,75 @@
 var camera;
-
 // Wait for device API libraries to load
 //
 document.addEventListener("deviceready", onDeviceReady, false);
+
+function id(element) {
+  return document.getElementById(element);
+}
 
 // device APIs are available
 //
 function onDeviceReady() {
   camera = navigator.camera;
+  cameraApp = new cameraApp();
+  cameraApp.run();
 }
 
-// Called when a photo is successfully retrieved
-//
-function onPhotoURISuccess(imageURI) {
-     // Uncomment to view the image file URI
-     // console.log(imageURI);
+function cameraApp() {}
 
-     // Get image handle
-     //
-     var largeImage = document.getElementById('largeImage');
+cameraApp.prototype = {
+  _pictureSource: null,
 
-     // Unhide image elements
-     //
-     largeImage.style.display = 'block';
+ _destinationType: null,
 
-     // Show the captured photo
-     // The in-line CSS rules are used to resize the image
-     //
-     largeImage.src = imageURI;
-   }
+  run: function() {
+    var that = this;
+    id("cameraBtn").addEventListener("click", function() {
+      that._capturePhoto(that, arguments);
+    });
+  },
 
-// A button will call this function
-//
-function capturePhoto() {
-  // Take picture using device camera and retrieve image as base64-encoded string
-  this.camera.getPicture(onPhotoURISuccess, onFail, {
-    quality: 50,
-    destinationType: Camera.DestinationType.FILE_URI //0 - DATA_URL, 1 - FILE_URI, 2 - NATIVE_URI
-  });
-}
+  // Called when a photo is successfully retrieved
+  //
+  _onPhotoDataSuccess: function(imageData) {
+    // Uncomment to view the image file URI
+    // console.log(imageURI);
 
-// Called if something bad happens.
-//
-function onFail(message) {
-  alert('Failed because: ' + message);
-}
+    // Get image handle
+    //
+    var image = document.getElementById('myImage');
+
+    // Unhide image elements
+    //
+    image.style.display = 'block';
+
+    // Show the captured photo
+    // The in-line CSS rules are used to resize the image
+    //
+    image.src = "data:image/jpeg;base64," + imageData;
+  },
+
+  // A button will call this function
+  //
+  _capturePhoto: function() {
+    var that = this;
+
+    // Take picture using device camera and retrieve image as image file URI
+
+    this.camera.getPicture(function() {
+      that._onPhotoDataSuccess(that, arguments);
+    }, function(){
+      that._onFail(that, arguments);
+    }, {
+      quality: 50,
+      destinationType: Camera.DestinationType.DATA_URL
+    });
+  },
+
+  // Called if something bad happens.
+  //
+  _onFail: function(message) {
+    alert('Image not taken, because: ' + message);
+  }
+
+};
