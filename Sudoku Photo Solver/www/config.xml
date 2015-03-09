@@ -13,13 +13,14 @@
   <feature name="http://api.phonegap.com/1.0/device" />
   <feature name="http://api.phonegap.com/1.0/camera" />
   <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true" />
+      <param name="ios-package" value="CDVStatusBar" onload="true" />
   </feature>
 
   <preference name="orientation" value="portrait" />
   <preference name="fullscreen" value="false" />
   <preference name="target-device" value="universal" />
-  <preference name="ios-statusbarstyle" value="black-opaque" />
+  <preference name="StatusBarOverlaysWebView" value="true" />
+  <preference name="StatusBarBackgroundColor" value="#000000" />
   <preference name="android-installLocation" value="auto" />
 
   <gap:plugin name="org.apache.cordova.statusbar" />
