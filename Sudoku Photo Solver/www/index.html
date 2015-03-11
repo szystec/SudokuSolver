@@ -7,6 +7,7 @@
 
   <title>Sudoku Photo Solver</title>
 
+  <link rel="stylesheet" href="css/custom-theme.css">
   <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.css">
   <link rel="stylesheet" href="css/app.css">
 
@@ -20,10 +21,10 @@
 
   <div data-role="page" class="" id="mainPage">
 
-    <div data-role="header" class="">
+    <div data-role="header" data-theme="c" class="">
       <h1>Sudoku Photo Solver</h1>
-      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
-      <a href="#" onclick="capturePhoto()" data-icon="camera" data-iconpos="notext">Camera</a>
+      <a href="#nav-panel" data-icon="bars" data-theme="c" data-iconpos="notext">Menu</a>
+      <a href="#" onclick="capturePhoto()" data-theme="c" data-icon="camera" data-iconpos="notext">Camera</a>
     </div>
 
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
@@ -158,17 +159,21 @@
 
 
     <!-- /Panel content -->
-    <div data-role="panel" data-display="overlay" data-theme="b" id="nav-panel">
+    <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
       <ul data-role="listview">
 
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
         </li>
+        <li data-role="list-divider"></li>
         <li data-icon="heart"><a href="#" data-rel="close">Save Sudoku</a>
         </li>
+        <li data-role="list-divider">Divider</li>
         <li data-icon="arrow-u"><a href="#" data-rel="close">Load Sudoku</a>
         </li>
+        <li data-role="list-divider">Divider</li>
         <li data-icon="info"><a href="#" data-rel="close">Help</a>
         </li>
+        <li data-role="list-divider">Divider</li>
         <li data-icon="comment"><a href="#" data-rel="close">About</a>
         </li>
       </ul>
