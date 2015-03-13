@@ -11,10 +11,11 @@
   <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.css">
   <link rel="stylesheet" href="css/app.css">
 
-  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-  <script src="js/jquery.js"></script>
-  <script src="js/jquery.mobile-1.4.5.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+  <script type="text/javascript" src="js/ocrad.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </head>
 
 <body>
@@ -29,6 +30,9 @@
 
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
+      <div id="ocr">
+        text here
+      </div>
       <img id="myImage" src="" />
 
       <table>
@@ -160,6 +164,10 @@
 
     <!-- /Panel content -->
     <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
+      <div data-role="header" class="">
+        <h1>Menu</h1>
+        <br />
+      </div>
       <ul data-role="listview">
 
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
