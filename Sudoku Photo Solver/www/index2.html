@@ -4,36 +4,29 @@
 <head>
   <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
   <meta charset="utf-8">
+
   <title>Sudoku Photo Solver</title>
-  <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.0.css">
+
+  <link rel="stylesheet" href="css/custom-theme.css">
+  <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.css">
   <link rel="stylesheet" href="css/app.css">
-  <script type="text/javascript" src="cordova.js"></script>
-  <script src="js/jquery.js"></script>
-  <script src="js/jquery.mobile-1.4.0.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
 </head>
 
 <body>
 
   <div data-role="page" class="" id="mainPage">
-    <div data-role="header" class="">
+
+    <div data-role="header" data-theme="c" class="">
       <h1>Sudoku Photo Solver</h1>
-      <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
-      <a href="#" id="camera" data-icon="camera" data-iconpos="notext">Camera</a>
+      <a href="#nav-panel" data-icon="bars" data-theme="c" data-iconpos="notext">Menu</a>
+      <a href="#" onclick="capturePhoto()" data-theme="c" data-icon="camera" data-iconpos="notext">Camera</a>
     </div>
 
-
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
-      <div>
-        <p>
-          Image should be here.
-          <img id="myImage" src="">
-        </p>
-      </div>
 
+      <img id="myImage" src="" />
 
       <table>
-
         <colgroup>
           <col>
             <col>
@@ -41,37 +34,37 @@
         </colgroup>
         <tbody>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>6</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
             <td></td>
-            <td>9</td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
 
@@ -82,37 +75,37 @@
         </colgroup>
         <tbody>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
 
@@ -123,37 +116,37 @@
         </colgroup>
         <tbody>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td>1</td>
             <td></td>
-            <td>3</td>
-            <td>6</td>
             <td></td>
-            <td>4</td>
-            <td>7</td>
             <td></td>
-            <td>9</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -161,61 +154,74 @@
 
 
     <!-- /Panel content -->
-    <div data-role="panel" data-display="reveal" data-theme="c" id="nav-panel">
+    <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
+      <div data-role="header" class="">
+        <h1>Menu</h1>
+        <br />
+      </div>
       <ul data-role="listview">
 
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
         </li>
+        <li data-role="list-divider"></li>
         <li data-icon="heart"><a href="#" data-rel="close">Save Sudoku</a>
         </li>
+        <li data-role="list-divider"></li>
         <li data-icon="arrow-u"><a href="#" data-rel="close">Load Sudoku</a>
         </li>
+        <li data-role="list-divider"></li>
         <li data-icon="info"><a href="#" data-rel="close">Help</a>
         </li>
+        <li data-role="list-divider"></li>
         <li data-icon="comment"><a href="#" data-rel="close">About</a>
         </li>
       </ul>
     </div>
   </div>
 
-  <!-- /panel -->
+<!-- Scripts -->
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+<script type="text/javascript" src="js/ocrad.js"></script>
 
-  <!-- <div data-role="content" class="">
-      <form>
-        <div data-role="fieldcontain">
-          <label for="billAmount">Bill Amount:</label>
-          <input type="number" name="billAmount" id="billAmount" data-clear-btn="true" maxlength="3" value="" placeholder="Enter amount here">
-        </div>
-        <p style="text-align: center;">
-          <a href="#" id="calcTip" data-role="button" data-icon="check">Calculate Tip</a>
-        </p>
-        <p class="amounts">
-          <label>Tip Amount</label>
-          <span id="tipAmount">$0.00</span>
-        </p>
-        <p class="amounts totals">
-          <label>Total Amount</label>
-          <span id="totalAmount">$0.00</span>
-        </p>
-      </form>
-    </div>
-  </div>
-
-<!--  <div data-role="page" class="" id="settingsPage" data-add-back-btn="true">
-    <div data-role="header" class="">
-      <a href="#mainPage" class="ui-btn ui-icon-delete ui-btn-icon-left" data-rel="back">Cancel</a>
-      <h1>FasTip - Settings</h1>
-    </div>
-    <div data-role="content" class="">
-      <form>
-        <input type="number" name="tipPercentage" id="tipPercentage" value="" placeholder="Tip Percentage">
-        <p style="text-align: center;">
-          <a href="#" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
-        </p>
-      </form>
-    </div>
-  </div> -->
+<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 
 </html>
+<!-- <div data-role="content" class="">
+    <form>
+      <div data-role="fieldcontain">
+        <label for="billAmount">Bill Amount:</label>
+        <input type="number" name="billAmount" id="billAmount" data-clear-btn="true" maxlength="3" value="" placeholder="Enter amount here">
+      </div>
+      <p style="text-align: center;">
+        <a href="#" id="calcTip" data-role="button" data-icon="check">Calculate Tip</a>
+      </p>
+      <p class="amounts">
+        <label>Tip Amount</label>
+        <span id="tipAmount">$0.00</span>
+      </p>
+      <p class="amounts totals">
+        <label>Total Amount</label>
+        <span id="totalAmount">$0.00</span>
+      </p>
+    </form>
+  </div>
+</div>
+
+<!--  <div data-role="page" class="" id="settingsPage" data-add-back-btn="true">
+  <div data-role="header" class="">
+    <a href="#mainPage" class="ui-btn ui-icon-delete ui-btn-icon-left" data-rel="back">Cancel</a>
+    <h1>FasTip - Settings</h1>
+  </div>
+  <div data-role="content" class="">
+    <form>
+      <input type="number" name="tipPercentage" id="tipPercentage" value="" placeholder="Tip Percentage">
+      <p style="text-align: center;">
+        <a href="#" id='saveSettings' data-role="button" data-inline="true" data-icon="check">Save</a>
+      </p>
+    </form>
+  </div>
+</div> -->

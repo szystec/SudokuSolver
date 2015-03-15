@@ -14,7 +14,12 @@ td {
   height: 2.5em;
 }
 #myImage{
-  width: 80%;
+
   margin: auto;
   margin-bottom: 1em;
+}
+canvas{
+  height: 100%;
+  width: 100%;
+  background: #adb0af;
 }

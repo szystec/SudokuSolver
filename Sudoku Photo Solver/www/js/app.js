@@ -13,26 +13,34 @@ function onDeviceReady() {
 // Called when a photo is successfully retrieved
 //
 function onPhotoDataSuccess(imageData) {
-     // Uncomment to view the image file URI
-     // console.log(imageURI);
+  // Uncomment to view the image file URI
+  // console.log(imageURI);
 
-     // Get image handle
-     //
-     var image = document.getElementById('myImage');
+  // Get image handle
+  //
+  var image = document.getElementById('myImage');
 
 
-     // Unhide image elements
-     //
-     image.style.display = 'block';
+  // Unhide image elements
+  //
+  image.style.display = 'block';
 
-     // Show the captured photo
-     // The in-line CSS rules are used to resize the image
-     //
-     image.src = "data:image/jpeg;base64," + imageData;
-     var ocrText = OCRAD(image.src);
-     var output = document.getElementById("ocr");
-     output.innerHTML = ocrText;
-   }
+  // Show the captured photo
+  // The in-line CSS rules are used to resize the image
+  //
+  image.src = "data:image/jpeg;base64," + imageData;
+  // var ocrText = OCRAD(image, {numeric: true});
+  // var output = document.getElementById("ocr");
+  // output.innerHTML = ocrText + "image analysed";
+
+  var canvas = document.getElementById('myCanvas');
+
+  canvas.width = image.width;
+  canvas.height = image.height;
+
+  var ctx = canvas.getContext('2d');
+  ctx.drawImage(image, 0, 0);
+}
 
 // A button will call this function
 //
@@ -41,7 +49,9 @@ function capturePhoto() {
 
   this.camera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 50,
-    destinationType: Camera.DestinationType.DATA_URL
+    destinationType: Camera.DestinationType.DATA_URL,
+    targetWidth: 300,
+    targetHeight: 300
   });
 }
 
