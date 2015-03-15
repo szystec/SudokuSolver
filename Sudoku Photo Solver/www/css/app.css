@@ -1,0 +1,20 @@
+table {
+  border-collapse: collapse;
+  font-family: Calibri, sans-serif;
+  margin: auto;
+}
+colgroup, tbody {
+  border: solid medium;
+}
+td {
+  border: solid thin;
+  text-align: center;
+  padding: 0;
+  width: 2.5em;
+  height: 2.5em;
+}
+#myImage{
+  width: 80%;
+  margin: auto;
+  margin-bottom: 1em;
+}
