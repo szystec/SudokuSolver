@@ -29,9 +29,6 @@ function onPhotoDataSuccess(imageData) {
      // The in-line CSS rules are used to resize the image
      //
      image.src = "data:image/jpeg;base64," + imageData;
-     var ocrText = OCRAD(image.src);
-     var output = document.getElementById("ocr");
-     output.innerHTML = ocrText;
    }
 
 // A button will call this function
