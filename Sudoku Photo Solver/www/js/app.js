@@ -29,17 +29,24 @@ function onPhotoDataSuccess(imageData) {
   // The in-line CSS rules are used to resize the image
   //
   image.src = "data:image/jpeg;base64," + imageData;
-  // var ocrText = OCRAD(image, {numeric: true});
-  // var output = document.getElementById("ocr");
-  // output.innerHTML = ocrText + "image analysed";
 
-  var canvas = document.getElementById('myCanvas');
 
-  canvas.width = image.width;
-  canvas.height = image.height;
+  var fxCanvas = fx.canvas();
+  var texture = fxCanvas.texture(image);
 
-  var ctx = canvas.getContext('2d');
-  ctx.drawImage(image, 0, 0);
+  fxCanvas.draw(texture)
+    .hueSaturation(-1, -1) //grayscale
+    .unsharpMask(20, 2)
+    .brightnessContrast(0.2, 0.9)
+    .update();
+
+  // replace the image with the canvas
+  image.parentNode.insertBefore(fxCanvas, image);
+  image.parentNode.removeChild(image);
+
+   var ocrText = OCRAD(image);
+   var output = document.getElementById("ocr");
+   output.innerHTML = ocrText + "image analysed";
 }
 
 // A button will call this function
@@ -50,8 +57,8 @@ function capturePhoto() {
   this.camera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 50,
     destinationType: Camera.DestinationType.DATA_URL,
-    targetWidth: 300,
-    targetHeight: 300
+    targetWidth: 400,
+    targetHeight: 400
   });
 }
 
