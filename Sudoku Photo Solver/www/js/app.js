@@ -41,9 +41,7 @@ function onPhotoDataSuccess(imageData) {
     .update();
 
     $(image).attr('src', fxCanvas.toDataURL());
-  // replace the image with the canvas
-//  image.parentNode.insertBefore(fxCanvas, image);
-//  image.parentNode.removeChild(image);
+
 }
 
 
