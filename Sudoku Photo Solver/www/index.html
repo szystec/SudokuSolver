@@ -9,6 +9,7 @@
 
   <link rel="stylesheet" href="css/custom-theme.css">
   <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.5.css">
+  <link rel="stylesheet" href="css/app-theme.css">
   <link rel="stylesheet" href="css/app.css">
 </head>
 
@@ -18,8 +19,8 @@
 
     <div data-role="header" data-theme="c" class="">
       <h1>Sudoku Photo Solver</h1>
-      <a href="#nav-panel" data-icon="bars" data-theme="c" data-iconpos="notext">Menu</a>
-      <a href="#" onclick="capturePhoto()" data-theme="c" data-icon="camera" data-iconpos="notext">Camera</a>
+      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left"><p></p></a> <!-- Menu -->
+      <button onclick="capturePhoto()" class="ui-btn ui-btn-inline ui-icon-camera ui-corner-all ui-btn-icon-right"><p></p></button> <!-- Camera -->
     </div>
 
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
@@ -31,19 +32,17 @@
       </div>
       <canvas id="myCanvas" style="display: none;"></canvas>
       <img id="myImage" src=""/>
-      <a href="#" onclick="ocr()" class="ui-btn ui-btn-inline ui-btn-icon-left">OCR</a>
+      <button onclick="ocr()" class="ui-btn ui-btn-inline ui-btn-icon-left">OCR</button>
 
     </div>
 
-
-    <!-- /Panel content -->
+    <!--  Menu panel content -->
     <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
       <div data-role="header" class="">
         <h1>Menu</h1>
         <br />
       </div>
       <ul data-role="listview">
-
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
         </li>
         <li data-role="list-divider"></li>

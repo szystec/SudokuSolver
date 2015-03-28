@@ -13,12 +13,11 @@ td {
   width: 2.5em;
   height: 2.5em;
 }
-#myImage{
-
+#myImage {
   margin: auto;
   margin-bottom: 1em;
 }
-canvas{
+canvas {
   height: 100%;
   width: 100%;
   background: #adb0af;
