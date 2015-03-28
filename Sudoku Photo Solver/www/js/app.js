@@ -37,29 +37,25 @@ function onPhotoDataSuccess(imageData) {
   fxCanvas.draw(texture)
     .hueSaturation(-1, -1) //grayscale
     .unsharpMask(20, 2)
-    .brightnessContrast(0.4, 0.9)
+    .brightnessContrast(0.2, 0.9)
     .update();
 
-    $(image).attr('src', fxCanvas.toDataURL());
   // replace the image with the canvas
-//  image.parentNode.insertBefore(fxCanvas, image);
-//  image.parentNode.removeChild(image);
+  image.parentNode.insertBefore(fxCanvas, image);
+  image.parentNode.removeChild(image);
+
+   var ocrText = OCRAD(image);
+   var output = document.getElementById("ocr");
+   output.innerHTML = ocrText + "image analysed";
 }
 
-
-function ocr(){
-  var img = document.getElementById('myImage');
-  var ocrText = OCRAD(img,{numeric: true});
-  var output = document.getElementById("ocr");
-  output.innerHTML = ocrText + "image analysed";
-}
 // A button will call this function
 //
 function capturePhoto() {
   // Take picture using device camera and retrieve image as image file URI
 
   this.camera.getPicture(onPhotoDataSuccess, onFail, {
-    quality: 100,
+    quality: 50,
     destinationType: Camera.DestinationType.DATA_URL,
     targetWidth: 400,
     targetHeight: 400
