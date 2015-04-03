@@ -29,7 +29,7 @@ function onPhotoDataSuccess(imageData) {
   var ctx = canvas.getContext("2d");
 
 
-  var c = Filters.filterImage(Filters.sobel, img);
+  var c = Filters.filterImage(Filters.grayscale, img);
   ctx.putImageData(c, 0, 0);
 //  var d = Filters.filterImage(Filters.threshold, canvas, 100);
 //  ctx.putImageData(d, 0, 0);
