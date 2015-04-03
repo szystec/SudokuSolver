@@ -18,39 +18,50 @@ function onPhotoDataSuccess(imageData) {
 
   // Get image handle
   //
-  var image = document.getElementById('myImage');
+  var canvas = document.getElementById('myCanvas');
+  var img = document.getElementById('myImage');
+  var fin = document.getElementById('postConversion');
 
+  img.src = "data:image/jpeg;base64," + imageData;
+
+  canvas.width = img.width;
+  canvas.height = img.height;
+  var ctx = canvas.getContext("2d");
+
+
+  var c = Filters.filterImage(Filters.sobel, img);
+  ctx.putImageData(c, 0, 0);
+//  var d = Filters.filterImage(Filters.threshold, canvas, 100);
+//  ctx.putImageData(d, 0, 0);
+
+
+//  ctx.scale(0.2, 0.2);
+//  ctx.drawImage(canvas, 0, 0);
+
+  fin.src = canvas.toDataURL("image/png");
 
   // Unhide image elements
   //
-  image.style.display = 'block';
+  //image.style.display = 'block';
 
   // Show the captured photo
   // The in-line CSS rules are used to resize the image
   //
-  image.src = "data:image/jpeg;base64," + imageData;
+  //image.src = "data:image/jpeg;base64," + imageData;
 
-
-  var fxCanvas = fx.canvas();
-  var texture = fxCanvas.texture(image);
-
-  fxCanvas.draw(texture)
-    .hueSaturation(-1, -1) //grayscale
-    .unsharpMask(20, 2)
-    .brightnessContrast(0.4, 0.9)
-    .update();
-
-    $(image).attr('src', fxCanvas.toDataURL());
+  // $(image).attr('src', fxCanvas.toDataURL());
 
 }
 
 
-function ocr(){
-  var img = document.getElementById('myImage');
+function ocr() {
+  /*var img = document.getElementById('myImage');
   var ocrText = OCRAD(img,{numeric: true});
   var output = document.getElementById("ocr");
-  output.innerHTML = ocrText + "image analysed";
+  output.innerHTML = ocrText + "image analysed";*/
+
 }
+
 // A button will call this function
 //
 function capturePhoto() {
