@@ -14,25 +14,154 @@
 
 <body>
 
-  <div data-role="page" class="" id="mainPage">
+  <div data-role="page" id="mainPage">
 
-    <div data-role="header" data-theme="c" class="">
+    <div data-role="header" data-theme="c">
       <h1>Sudoku Photo Solver</h1>
-      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left"><p></p></a> <!-- Menu button -->
-      <button onclick="capturePhoto()" class="ui-btn ui-btn-inline ui-icon-camera ui-corner-all ui-btn-icon-right"><p></p></button> <!-- Camera button -->
+      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left">
+        <p></p>
+      </a>
+      <!-- Menu button -->
+      <button onclick="capturePhoto()" class="ui-btn ui-btn-inline ui-icon-camera ui-corner-all ui-btn-icon-right">
+        <p></p>
+      </button>
+      <!-- Camera button -->
     </div>
 
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
       <div id="ocr">
         <p>
-          to analyse
         </p>
       </div>
 
-      <img id="myImage" src=""/>
-      <canvas id="myCanvas"></canvas>
-      <img id="postConversion" src=""/>
+      <table>
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+        </tbody>
+
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+        </tbody>
+
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+          <tr>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <img id="camImage" src="" />
+      <canvas id="filterCanvas"></canvas>
 
       <button onclick="ocr()" class="ui-btn ui-btn-inline ui-btn-icon-left">OCR</button>
 
@@ -41,7 +170,7 @@
 
     <!-- /Panel content -->
     <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
-      <div data-role="header" class="">
+      <div data-role="header">
         <h1>Menu</h1>
         <br />
       </div>
@@ -63,17 +192,18 @@
         </li>
       </ul>
     </div>
+
+  </div>
   </div>
 
-<!-- Scripts -->
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-<script type="text/javascript" src="js/ocrad.js"></script>
-<script type="text/javascript" src="js/glfx.min.js"></script>
-<script type="text/javascript" src="js/canvasFilters.js"></script>
+  <!-- Scripts -->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery-1.11.2.min.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.mobile-1.4.5.min.js"></script>
+  <script type="text/javascript" src="js/vendor/ocrad.js"></script>
 
-<script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/canvasFilters.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 
 </body>
 

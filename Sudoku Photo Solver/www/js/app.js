@@ -10,6 +10,19 @@ function onDeviceReady() {
   camera = navigator.camera;
 }
 
+function processImage(image){
+  var canvas = document.getElementById('filterCanvas');
+  canvas.width = image.width;
+  canvas.height = image.height;
+
+  var ctx = canvas.getContext("2d");
+  var filtered = Filters.filterImage(Filters.threshold, image, 100);
+  ctx.putImageData(filtered, 0, 0);
+
+  image.src = canvas.toDataURL("image/jpeg");
+  $("#camImage").addClass("imageProcessed");
+}
+
 // Called when a photo is successfully retrieved
 //
 function onPhotoDataSuccess(imageData) {
@@ -18,58 +31,21 @@ function onPhotoDataSuccess(imageData) {
 
   // Get image handle
   //
-  var image = document.getElementById('myImage');
-
-
-  // Unhide image elements
-  //
-  image.style.display = 'block';
+  var img = document.getElementById('camImage');
 
   // Show the captured photo
   // The in-line CSS rules are used to resize the image
   //
-  image.src = "data:image/jpeg;base64," + imageData;
-
-
-  /*  var fxCanvas = fx.canvas();
-    var texture = fxCanvas.texture(image);
-
-    fxCanvas.draw(texture)
-      .hueSaturation(-1, -1) //grayscale
-      .unsharpMask(20, 2)
-      .brightnessContrast(0.4, 0.9)
-      .update();
-
-      $(image).attr('src', fxCanvas.toDataURL());*/
-
+  img.src = "data:image/jpeg;base64," + imageData;
+  this.processImage(img);
 }
 
 
 function ocr() {
-  /*var img = document.getElementById('myImage');
+  var img = document.getElementById('camImage');
   var ocrText = OCRAD(img,{numeric: true});
   var output = document.getElementById("ocr");
-  output.innerHTML = ocrText + "image analysed";*/
-  var canvas = document.getElementById('myCanvas');
-  var img = document.getElementById('myImage');
-  var fin = document.getElementById('postConversion');
-  canvas.width = img.width;
-  canvas.height = img.height;
-  var ctx = canvas.getContext("2d");
-
-
-  var c = Filters.filterImage(Filters.sobel, img);
-  ctx.putImageData(c, 0, 0);
-//  var d = Filters.filterImage(Filters.threshold, canvas, 100);
-//  ctx.putImageData(d, 0, 0);
-
-
-//  ctx.scale(0.2, 0.2);
-//  ctx.drawImage(canvas, 0, 0);
-
-  fin.src = canvas.toDataURL("image/jpeg");
-
-
+  output.innerHTML = ocrText;
 }
 
 // A button will call this function

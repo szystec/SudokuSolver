@@ -11,19 +11,24 @@ td {
   text-align: center;
   padding: 0;
   width: 2.5em;
-  height: 2.5em;
-}
-#myImage {
-  margin: auto;
-  margin-bottom: 1em;
-
+  height: 1em;
 }
 
-#postConversion {
-  margin: auto;
+h4{
+  fint-size: small;
+  text-align: right;
+}
+
+#camImage {
+  display: none;
+}
+
+#camImage.imageProcessed{
+  display: block;
   width: 100%;
+  margin: auto;
 }
-canvas {
 
-  background: #adb0af;
+canvas {
+  display: none;
 }
