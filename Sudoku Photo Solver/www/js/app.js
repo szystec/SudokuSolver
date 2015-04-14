@@ -1,4 +1,5 @@
 var camera;
+var imageSource = 1;
 
 // Wait for device API libraries to load
 //
@@ -48,14 +49,24 @@ function ocr() {
   output.innerHTML = ocrText;
 }
 
+function capturePhoto(){
+  this.imageSource = 1;
+  this.getPhoto();
+}
+
+function loadPhoto(){
+  this.imageSource = 2;
+  this.getPhoto();
+}
 // A button will call this function
 //
-function capturePhoto() {
+function getPhoto() {
   // Take picture using device camera and retrieve image as image file URI
 
   this.camera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 100,
     destinationType: Camera.DestinationType.DATA_URL,
+    sourceType:  imageSource,
     targetWidth: 400,
     targetHeight: 400
   });
@@ -65,4 +76,10 @@ function capturePhoto() {
 //
 function onFail(message) {
   alert('Image not taken, because: ' + message);
+}
+
+function writeNumber(){
+  element = document.getElementById('11');
+  element.innerHTML = '2';
+  //$("#11").addClass("number");
 }

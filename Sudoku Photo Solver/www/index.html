@@ -18,14 +18,16 @@
 
     <div data-role="header" data-theme="c">
       <h1>Sudoku Photo Solver</h1>
-      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left">
-        <p></p>
-      </a>
-      <!-- Menu button -->
-      <button onclick="capturePhoto()" class="ui-btn ui-btn-inline ui-icon-camera ui-corner-all ui-btn-icon-right">
-        <p></p>
-      </button>
-      <!-- Camera button -->
+      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left"><p></p></a>
+      <a href="#popupMenu" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-right ui-btn-c"><p></p></a>
+
+      <div data-role="popup" id="popupMenu" data-transition="flip" data-theme="d">
+        <ul data-role="listview" data-inset="true" style="min-width:210px;">
+          <li data-role="list-divider">Choose image source</li>
+          <li data-icon="camera"><a href="#" onclick="capturePhoto()" data-rel="close">Camera</a></li>
+          <li data-icon="grid"><a href="#" onclick="loadPhoto()" data-rel="close">Photo Library</a></li>
+          </ul>
+      </div>
     </div>
 
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
@@ -43,78 +45,37 @@
         </colgroup>
         <tbody>
           <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td id="11" onclick="writeNumber()"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-          </tr>
-        </tbody>
-
-        <colgroup>
-          <col>
-            <col>
-              <col>
-        </colgroup>
-        <tbody>
-          <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-          </tr>
-          <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-          </tr>
-          <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
 
@@ -125,37 +86,78 @@
         </colgroup>
         <tbody>
           <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder=" " value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
-            <td><input type="text" name="textinput-hide" id="textinput-hide" placeholder="0" value=""></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>

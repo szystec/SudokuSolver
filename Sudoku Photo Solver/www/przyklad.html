@@ -3,6 +3,70 @@
 
 
 
+function buildDOMSudokuGrid()
+{
+    // Create "view" sudoku grid
+    var HTML = '<table class="sudoku" style="table-layout:fixed;">\n';
+    HTML += '<tbody class="s0" >\n';
+    var elem = 0
+    var s = 1;
+    for (row = 0; row < 9; row++)
+    {
+        if (row == 3 || row == 6)
+        {
+            HTML += "</tbody>\n";
+            HTML += '<tbody class="s' + s + '" >\n';
+            s++;
+        }
+
+        HTML += '<tr class="r' + row + '">\n';
+        for (col = 0; col < 9; col++)
+        {
+            var group;
+            if (col >= 0 && col <= 2)
+            {
+                if (row >= 0 && row <= 2)
+                    group = "g1"
+                else if (row >= 3 && row <= 5)
+                    group = "g2";
+                else
+                    group = "g3";
+            }
+            else if (col >= 3 && col <= 5)
+            {
+                if (row >= 0 && row <= 2)
+                    group = "g4"
+                else if (row >= 3 && row <= 5)
+                    group = "g5";
+                else
+                    group = "g6";
+            }
+            else if (col >= 6)
+            {
+                if (row >= 0 && row <= 2)
+                    group = "g7"
+                else if (row >= 3 && row <= 5)
+                    group = "g8";
+                else
+                    group = "g9";
+            }
+            HTML += '<td class="c' + col + '" ><div  class="col' + col + ' row' + row + ' '
+			+ group + '" id="elem' + elem + '"><div></td>\n';
+            elem++;
+        }
+        HTML += "</tr>\n";
+    }
+    HTML += "</tbody>\n";
+    HTML += "</table>\n";
+	document.getElementById("grid").innerHTML = HTML;
+	var txtfld = document.getElementById("textfield");
+		txtfld.style.color = "#00f";
+		txtfld.value = "Welcome to Sudoku by Darren Moody! - Select difficulty to begin.";
+    displayLogin();
+}
+
+
+
 
 <html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
 <head>

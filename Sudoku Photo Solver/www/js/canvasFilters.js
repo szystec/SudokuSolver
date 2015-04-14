@@ -106,60 +106,6 @@ Filters.identity = function(pixels, args) {
   return output;
 };
 
-Filters.horizontalFlip = function(pixels) {
-  var output = Filters.createImageData(pixels.width, pixels.height);
-  var w = pixels.width;
-  var h = pixels.height;
-  var dst = output.data;
-  var d = pixels.data;
-  for (var y=0; y<h; y++) {
-    for (var x=0; x<w; x++) {
-      var off = (y*w+x)*4;
-      var dstOff = (y*w+(w-x-1))*4;
-      dst[dstOff] = d[off];
-      dst[dstOff+1] = d[off+1];
-      dst[dstOff+2] = d[off+2];
-      dst[dstOff+3] = d[off+3];
-    }
-  }
-  return output;
-};
-
-Filters.verticalFlip = function(pixels) {
-  var output = Filters.createImageData(pixels.width, pixels.height);
-  var w = pixels.width;
-  var h = pixels.height;
-  var dst = output.data;
-  var d = pixels.data;
-  for (var y=0; y<h; y++) {
-    for (var x=0; x<w; x++) {
-      var off = (y*w+x)*4;
-      var dstOff = ((h-y-1)*w+x)*4;
-      dst[dstOff] = d[off];
-      dst[dstOff+1] = d[off+1];
-      dst[dstOff+2] = d[off+2];
-      dst[dstOff+3] = d[off+3];
-    }
-  }
-  return output;
-};
-
-Filters.luminance = function(pixels, args) {
-  var output = Filters.createImageData(pixels.width, pixels.height);
-  var dst = output.data;
-  var d = pixels.data;
-  for (var i=0; i<d.length; i+=4) {
-    var r = d[i];
-    var g = d[i+1];
-    var b = d[i+2];
-    // CIE luminance for the RGB
-    var v = 0.2126*r + 0.7152*g + 0.0722*b;
-    dst[i] = dst[i+1] = dst[i+2] = v;
-    dst[i+3] = d[i+3];
-  }
-  return output;
-};
-
 Filters.grayscale = function(pixels, args) {
   var output = Filters.createImageData(pixels.width, pixels.height);
   var dst = output.data;
@@ -175,21 +121,6 @@ Filters.grayscale = function(pixels, args) {
   return output;
 };
 
-Filters.grayscaleAvg = function(pixels, args) {
-  var output = Filters.createImageData(pixels.width, pixels.height);
-  var dst = output.data;
-  var d = pixels.data;
-  var f = 1/3;
-  for (var i=0; i<d.length; i+=4) {
-    var r = d[i];
-    var g = d[i+1];
-    var b = d[i+2];
-    var v = (r+g+b) * f;
-    dst[i] = dst[i+1] = dst[i+2] = v;
-    dst[i+3] = d[i+3];
-  }
-  return output;
-};
 
 Filters.threshold = function(pixels, threshold, high, low) {
   var output = Filters.createImageData(pixels.width, pixels.height);
@@ -203,19 +134,6 @@ Filters.threshold = function(pixels, threshold, high, low) {
     var b = d[i+2];
     var v = (0.3*r + 0.59*g + 0.11*b >= threshold) ? high : low;
     dst[i] = dst[i+1] = dst[i+2] = v;
-    dst[i+3] = d[i+3];
-  }
-  return output;
-};
-
-Filters.invert = function(pixels) {
-  var output = Filters.createImageData(pixels.width, pixels.height);
-  var d = pixels.data;
-  var dst = output.data;
-  for (var i=0; i<d.length; i+=4) {
-    dst[i] = 255-d[i];
-    dst[i+1] = 255-d[i+1];
-    dst[i+2] = 255-d[i+2];
     dst[i+3] = d[i+3];
   }
   return output;
@@ -543,30 +461,6 @@ Filters.separableConvolveFloat32 = function(pixels, horizWeights, vertWeights, o
   );
 };
 
-Filters.gaussianBlur = function(pixels, diameter) {
-  diameter = Math.abs(diameter);
-  if (diameter <= 1) return Filters.identity(pixels);
-  var radius = diameter / 2;
-  var len = Math.ceil(diameter) + (1 - (Math.ceil(diameter) % 2));
-  var weights = this.getFloat32Array(len);
-  var rho = (radius+0.5) / 3;
-  var rhoSq = rho*rho;
-  var gaussianFactor = 1 / Math.sqrt(2*Math.PI*rhoSq);
-  var rhoFactor = -1 / (2*rho*rho);
-  var wsum = 0;
-  var middle = Math.floor(len/2);
-  for (var i=0; i<len; i++) {
-    var x = i-middle;
-    var gx = gaussianFactor * Math.exp(x*x*rhoFactor);
-    weights[i] = gx;
-    wsum += gx;
-  }
-  for (var i=0; i<weights.length; i++) {
-    weights[i] /= wsum;
-  }
-  return Filters.separableConvolve(pixels, weights, weights, false);
-};
-
 Filters.laplaceKernel = Filters.getFloat32Array(
   [-1,-1,-1,
    -1, 8,-1,
@@ -667,145 +561,6 @@ Filters.distortSine = function(pixels, amount, yamount) {
       dst[off+1] = rgba[1];
       dst[off+2] = rgba[2];
       dst[off+3] = rgba[3];
-    }
-  }
-  return output;
-};
-
-Filters.darkenBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = a[i] < b[i] ? a[i] : b[i];
-    dst[i+1] = a[i+1] < b[i+1] ? a[i+1] : b[i+1];
-    dst[i+2] = a[i+2] < b[i+2] ? a[i+2] : b[i+2];
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.lightenBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = a[i] > b[i] ? a[i] : b[i];
-    dst[i+1] = a[i+1] > b[i+1] ? a[i+1] : b[i+1];
-    dst[i+2] = a[i+2] > b[i+2] ? a[i+2] : b[i+2];
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.multiplyBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = (a[i]*b[i])*f;
-    dst[i+1] = (a[i+1]*b[i+1])*f;
-    dst[i+2] = (a[i+2]*b[i+2])*f;
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.screenBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = a[i]+b[i]-a[i]*b[i]*f;
-    dst[i+1] = a[i+1]+b[i+1]-a[i+1]*b[i+1]*f;
-    dst[i+2] = a[i+2]+b[i+2]-a[i+2]*b[i+2]*f;
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.addBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = (a[i]+b[i]);
-    dst[i+1] = (a[i+1]+b[i+1]);
-    dst[i+2] = (a[i+2]+b[i+2]);
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.subBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = (a[i]+b[i]-255);
-    dst[i+1] = (a[i+1]+b[i+1]-255);
-    dst[i+2] = (a[i+2]+b[i+2]-255);
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.differenceBlend = function(below, above) {
-  var output = Filters.createImageData(below.width, below.height);
-  var a = below.data;
-  var b = above.data;
-  var dst = output.data;
-  var f = 1/255;
-  for (var i=0; i<a.length; i+=4) {
-    dst[i] = Math.abs(a[i]-b[i]);
-    dst[i+1] = Math.abs(a[i+1]-b[i+1]);
-    dst[i+2] = Math.abs(a[i+2]-b[i+2]);
-    dst[i+3] = a[i+3]+((255-a[i+3])*b[i+3])*f;
-  }
-  return output;
-};
-
-Filters.erode = function(pixels) {
-  var src = pixels.data;
-  var sw = pixels.width;
-  var sh = pixels.height;
-
-  var w = sw;
-  var h = sh;
-  var output = Filters.createImageData(w, h);
-  var dst = output.data;
-
-  for (var y=0; y<h; y++) {
-    for (var x=0; x<w; x++) {
-      var sy = y;
-      var sx = x;
-      var dstOff = (y*w+x)*4;
-      var srcOff = (sy*sw+sx)*4;
-      var v = 0;
-      if (src[srcOff] == 0) {
-        if (src[(sy*sw+Math.max(0,sx-1))*4] == 0 &&
-            src[(Math.max(0,sy-1)*sw+sx)*4] == 0) {
-            v = 255;
-        }
-      } else {
-          v = 255;
-      }
-      dst[dstOff] = v;
-      dst[dstOff+1] = v;
-      dst[dstOff+2] = v;
-      dst[dstOff+3] = 255;
     }
   }
   return output;
