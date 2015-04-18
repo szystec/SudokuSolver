@@ -1,82 +1,97 @@
 function Solver() {
-    this.working_grid = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ];
+  this.workingGrid = [
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+}
+
+Solver.prototype.isRowValid = function(currentRow, currentColumn) {
+  var input = this.workingGrid[currentRow][currentColumn];
+  for (var column = 0; column < 9; column++) {
+    if (column != currentColumn && this.workingGrid[currentRow][column] == input) {
+      return false;
+    }
+  }
+  return true;
 };
 
-Solver.prototype.validate_row = function (current_row, current_column) {
-    var value = this.working_grid[current_row][current_column];
-    for (var column = 0; column < 9; column++) {
-        if (column != current_column && this.working_grid[current_row][column] == value) {
-            return false;
-        }
+Solver.prototype.isColumnValid = function(currentRow, currentColumn) {
+  var input = this.workingGrid[currentRow][currentColumn];
+  for (var row = 0; row < 9; row++) {
+    if (row != currentRow && this.workingGrid[row][currentColumn] == input) {
+      return false;
     }
-    return true;
+  }
+  return true;
 };
 
-Solver.prototype.validate_column = function (current_row, current_column) {
-    var value = this.working_grid[current_row][current_column];
-    for (var row = 0; row < 9; row++) {
-        if (row != current_row && this.working_grid[row][current_column] == value) {
-            return false;
-        }
-    }
-    return true;
-};
+Solver.prototype.isRegionValid = function(currentRow, currentColumn) {
+  var input = this.workingGrid[currentRow][currentColumn];
+  var regionRow = Math.floor(currentRow / 3);
+  var regionColumn = Math.floor(currentColumn / 3);
 
-Solver.prototype.validate_box = function (current_row, current_column) {
-    var value = this.working_grid[current_row][current_column];
-    var box_row = Math.floor(current_row / 3);
-    var box_column = Math.floor(current_column / 3);
-
-    for (var row = box_row * 3; row < box_row * 3 + 3; row++) {
-        for (var column = box_column * 3; column < box_column * 3 + 3; column++) {
-            if (row != current_row && column != current_column && this.working_grid[row][column] == value) {
-                return false;
-            }
-        }
-    }
-    return true;
-};
-
-Solver.prototype.backtrack = function (current_row, current_column) {
-    current_column++;
-    if (current_column > 8) {
-        current_column = 0;
-        current_row++;
-        if (current_row > 8) {
-            return true;
-        }
-    }
-
-    if (this.working_grid[current_row][current_column] != 0) {
-        if (!(this.validate_row(current_row, current_column) && this.validate_column(current_row, current_column) && this.validate_box(current_row, current_column))){
-            // Anti-monkey. In case input was invalid.
-            return false;
-        }
-        return this.backtrack(current_row, current_column);
-    } else {
-        for (var x = 1; x < 10; x++) {
-            this.working_grid[current_row][current_column] = x;
-            if (this.validate_row(current_row, current_column) &&  this.validate_column(current_row, current_column) && this.validate_box(current_row, current_column)){
-                if (this.backtrack(current_row, current_column)) {
-                    return true;
-                }
-            }
-        }
-        this.working_grid[current_row][current_column] = 0;
+  for (var column = regionColumn * 3; column < regionColumn * 3 + 3; column++) {
+    for (var row = regionRow * 3; row < regionRow * 3 + 3; row++) {
+      if (column != currentColumn && row != currentRow && this.workingGrid[row][column] == input) {
         return false;
+      }
     }
+  }
+  return true;
 };
 
-Solver.prototype.solve = function () {
-    return this.backtrack(0, -1);
+Solver.prototype.solve = function(currentRow, currentColumn) {
+
+  currentColumn++;
+  if (currentColumn > 8) {
+    currentColumn = 0;
+    currentRow++;
+    if (currentRow > 8) {
+      return true;
+    }
+  }
+
+  // if cell has a predetermined value sanity check if it is valid
+  // with Sudoku rules.
+  if (this.workingGrid[currentRow][currentColumn] != 0) {
+    if (!(this.isRowValid(currentRow, currentColumn) && this.isColumnValid(currentRow, currentColumn) && this.isRegionValid(currentRow, currentColumn))) {
+      return false;
+
+    }
+    return this.solve(currentRow, currentColumn);
+
+  } else {
+    for (var x = 1; x < 10; x++) {
+      this.workingGrid[currentRow][currentColumn] = x;
+      if (this.isRowValid(currentRow, currentColumn) && this.isColumnValid(currentRow, currentColumn) && this.isRegionValid(currentRow, currentColumn)) {
+        if (this.solve(currentRow, currentColumn)) {
+          return true;
+        }
+      }
+    }
+    this.workingGrid[currentRow][currentColumn] = 0;
+    return false;
+  }
+};
+
+Solver.prototype.initiateSolver= function() {
+
+  if (this.solve(0, -1)) {
+    for (var row = 0; row < 9; row++) {
+      for (var column = 0; column < 9; column++) {
+        var cell = document.getElementById(row.toString() + column.toString());
+        cell.innerText = this.workingGrid[row][column];
+      }
+    }
+    return true;
+  } else {
+    return false;
+  }
 };
