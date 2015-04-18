@@ -20,10 +20,10 @@ function solvePuzzle() {
   for (var row = 0; row < 9; row++) {
     for (var column = 0; column < 9; column++) {
       var value = document.getElementById(row.toString() + column.toString()).innerText;
-      solver.workingGrid[row][column] = value;
+      solver.sudokuGrid[row][column] = value;
     }
   }
-  if(!(solver.solve())){
+  if(!(solver.initiateSolver())){
     alert("Unable to solve the puzzle!");
   }
 }
