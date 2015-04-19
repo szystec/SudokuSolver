@@ -1,3 +1,28 @@
+function solvePuzzle() {
+  var solver = new Solver();
+  var row, column;
+  for ( row = 0; row < 9; row++) {
+    for ( column = 0; column < 9; column++) {
+      var value = document.getElementById(row.toString() + column.toString()).innerText;
+      if (value != '0') {
+        solver.sudokuGrid[row][column] = value;
+      }
+    }
+  }
+  if (solver.initiateSolver()) {
+    for ( row = 0; row < 9; row++) {
+      for ( column = 0; column < 9; column++) {
+        var cell = document.getElementById(row.toString() + column.toString());
+        cell.innerText = solver.sudokuGrid[row][column];
+      }
+    }
+  } else {
+    alert("Unable to solve the puzzle!");
+  }
+}
+
+
+
 function isNumberKey(evt) {
   var charCode = (evt.which) ? evt.which : event.keyCode;
   if (charCode > 31 && (charCode < 49 || charCode > 57))
@@ -12,19 +37,6 @@ function onTextFieldChanged(evt) {
     caller.style.backgroundColor = '#afffff';
   } else {
     caller.style.backgroundColor = '#e92929';
-  }
-}
-
-function solvePuzzle() {
-  var solver = new Solver();
-  for (var row = 0; row < 9; row++) {
-    for (var column = 0; column < 9; column++) {
-      var value = document.getElementById(row.toString() + column.toString()).innerText;
-      solver.sudokuGrid[row][column] = value;
-    }
-  }
-  if(!(solver.initiateSolver())){
-    alert("Unable to solve the puzzle!");
   }
 }
 

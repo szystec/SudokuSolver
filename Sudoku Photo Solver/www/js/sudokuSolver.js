@@ -1,4 +1,5 @@
 function Solver() {
+  // Main table contating Sudoku grid values and solver input.
   this.sudokuGrid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -11,72 +12,131 @@ function Solver() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
+  // Table containing allowed cell values based on Sudoku grid
+  // and Sudoku rules.
   this.allowedValues = [
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
-    [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
-      [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9]
+    [
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      [1, 2, 3, 4, 5, 6, 7, 8, 9]
     ],
   ];
 }
 
-//TODO
-Solver.prototype.setAllowedValues = function() {
-    //update the whole table, problem jest taki ze tableka nie jest wczytywana
-    //cala od razu tylko po polu. trzeba zmienic zeby wczytalo wszystko i dopiero
-    //wykonywalo dzialania
+//Udates row column and region
+Solver.prototype.updateAllowedValues = function(currentRow, currentColumn) {
+  var input = this.sudokuGrid[currentRow][currentColumn];
+  this.allowedValues[currentRow][currentColumn] = 0;
 
-};
-
-//TODO
-Solver.prototype.updateAllowedValues = function(currentRow, currentColumn, input) {
-  //row po pierwsze usunac wszystkie allowedvalues z pola ktore zostaje wczytane
-  //i dopiero usuwac konkretne value z reszty
+  //row
   for (var column = 0; column < 9; column++) {
-    for(var value = 0; value < this.allowedValues[currentRow][column].length; value++){
-      if (column != currentColumn && this.allowedValues[currentRow][column][value] == input) {
-        this.allowedValues[currentRow][column].splice(value,1);
-        console.log(this.allowedValues[currentRow][column].toString());
-    }
-
+    for (var rValue = 0; rValue < this.allowedValues[currentRow][column].length; rValue++) {
+      if (column != currentColumn && this.allowedValues[currentRow][column][rValue] == input) {
+        this.allowedValues[currentRow][column].splice(rValue, 1);
+      }
     }
   }
-/*
+
   //column
   for (var row = 0; row < 9; row++) {
-    if (row != currentRow && this.sudokuGrid[row][currentColumn] == input) {
-      return false;
+    for (var cValue = 0; cValue < this.allowedValues[row][currentColumn].length; cValue++) {
+      if (row != currentRow && this.allowedValues[row][currentColumn][cValue] == input) {
+        this.allowedValues[row][currentColumn].splice(cValue, 1);
+      }
     }
   }
 
@@ -84,21 +144,41 @@ Solver.prototype.updateAllowedValues = function(currentRow, currentColumn, input
   var regionRow = Math.floor(currentRow / 3);
   var regionColumn = Math.floor(currentColumn / 3);
 
-  for (var rcolumn = regionColumn * 3; rcolumn < regionColumn * 3 + 3; rcolumn++) {
-    for (var rrow = regionRow * 3; rrow < regionRow * 3 + 3; rrow++) {
-      if (rcolumn != currentColumn && rrow != currentRow && this.sudokuGrid[row][column] == input) {
-        return false;
+  for (var reColumn = regionColumn * 3; reColumn < regionColumn * 3 + 3; reColumn++) {
+    for (var reRow = regionRow * 3; reRow < regionRow * 3 + 3; reRow++) {
+      for (var reValue = 0; reValue < this.allowedValues[reRow][reColumn].length; reValue++) {
+        if (reColumn != currentColumn && reRow != currentRow && this.allowedValues[reRow][reColumn][reValue] == input) {
+          this.allowedValues[reRow][reColumn].splice(reValue, 1);
+        }
       }
     }
-  }*/
+  }
+};
+
+// Iterates through @sudokuGrid table and removes duplicated cell values
+// in @allowedValues table.
+Solver.prototype.setAllowedValues = function() {
+  for (var row = 0; row < 9; row++) {
+    for (var column = 0; column < 9; column++) {
+      if (this.sudokuGrid[row][column] != 0) {
+        this.updateAllowedValues(row, column);
+      }
+    }
+  }
 };
 
 //TODO
 Solver.prototype.nakedSingle = function() {
   var foundSingle = false;
 
-  if(false){
-    this.updateAllowedValues();
+  for (var row = 0; row < 9; row++) {
+    for (var column = 0; column < 9; column++) {
+      if(this.sudokuGrid[row][column] == 0 && this.allowedValues[row][column].length == 1){
+        this.sudokuGrid[row][column] = this.allowedValues[row][column][0];
+        this.updateAllowedValues(row, column);
+        foundSingle = true;
+      }
+    }
   }
   return foundSingle;
 };
@@ -106,7 +186,7 @@ Solver.prototype.nakedSingle = function() {
 //TODO
 Solver.prototype.nakedPair = function() {
 
-  if(false){
+  if (false) {
     this.updateAllowedValues();
   }
   return false;
@@ -115,11 +195,12 @@ Solver.prototype.nakedPair = function() {
 //TODO
 Solver.prototype.hiddenSingle = function() {
 
-  if(false){
+  if (false) {
     this.updateAllowedValues();
   }
   return false;
 };
+
 
 Solver.prototype.isRowValid = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
@@ -131,6 +212,7 @@ Solver.prototype.isRowValid = function(currentRow, currentColumn) {
   return true;
 };
 
+
 Solver.prototype.isColumnValid = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
   for (var row = 0; row < 9; row++) {
@@ -140,6 +222,7 @@ Solver.prototype.isColumnValid = function(currentRow, currentColumn) {
   }
   return true;
 };
+
 
 Solver.prototype.isRegionValid = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
@@ -156,7 +239,14 @@ Solver.prototype.isRegionValid = function(currentRow, currentColumn) {
   return true;
 };
 
-Solver.prototype.solve = function(currentRow, currentColumn) {
+Solver.prototype.solvePatterns = function(){
+  if(this.nakedSingle()){
+    this.solvePatterns();
+  }
+  return false;
+};
+
+Solver.prototype.solveBacktracking = function(currentRow, currentColumn) {
 
   currentColumn++;
   if (currentColumn > 8) {
@@ -173,44 +263,32 @@ Solver.prototype.solve = function(currentRow, currentColumn) {
     if (!(this.isRowValid(currentRow, currentColumn) && this.isColumnValid(currentRow, currentColumn) && this.isRegionValid(currentRow, currentColumn))) {
       return false;
     }
-    return this.solve(currentRow, currentColumn);
+    return this.solveBacktracking(currentRow, currentColumn);
 
-  //find patterns
-  } else if(this.nakedSingle() || this.nakedPair() || this.hiddenSingle()){
-    return this.solve(currentRow, currentColumn);
-
-  //backtrack
+    //backtrack
   } else {
     for (var x = 1; x < 10; x++) {
       this.sudokuGrid[currentRow][currentColumn] = x;
       if (this.isRowValid(currentRow, currentColumn) && this.isColumnValid(currentRow, currentColumn) && this.isRegionValid(currentRow, currentColumn)) {
-    //    this.updateAllowedValues(currentRow, currentColumn);
-        if (this.solve(currentRow, currentColumn)) {
+        if (this.solveBacktracking(currentRow, currentColumn)) {
           return true;
         }
       }
     }
     this.sudokuGrid[currentRow][currentColumn] = 0;
-  //  this.setAllowedValues();
     return false;
   }
 };
 
-//TODO
-Solver.prototype.initiateSolver = function() {
 
-  if (this.solve(0, -1)) {
-    for (var row = 0; row < 9; row++) {
-      for (var column = 0; column < 9; column++) {
-        var cell = document.getElementById(row.toString() + column.toString());
-        if(cell.innerText != '0'){
-          cell.innerText = this.sudokuGrid[row][column];
-          this.updateAllowedValues(row, column, cell.innerText);
-        }
-      }
-    }
+Solver.prototype.initiateSolver = function() {
+  this.setAllowedValues();
+  if(this.solvePatterns()){
     return true;
-  } else {
-    return false;
+
+  } else if(this.solveBacktracking(0, -1)) {
+    return true;
   }
+
+  return false;
 };
