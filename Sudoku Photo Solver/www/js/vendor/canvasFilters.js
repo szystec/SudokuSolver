@@ -121,6 +121,19 @@ Filters.grayscale = function(pixels, args) {
   return output;
 };
 
+Filters.invert = function(pixels) {
+  var output = Filters.createImageData(pixels.width, pixels.height);
+  var d = pixels.data;
+  var dst = output.data;
+  for (var i=0; i<d.length; i+=4) {
+    dst[i] = 255-d[i];
+    dst[i+1] = 255-d[i+1];
+    dst[i+2] = 255-d[i+2];
+    dst[i+3] = d[i+3];
+  }
+  return output;
+};
+
 
 Filters.threshold = function(pixels, threshold, high, low) {
   var output = Filters.createImageData(pixels.width, pixels.height);
@@ -537,34 +550,7 @@ Filters.bilinearSample = function (pixels, x, y, rgba) {
   return rgba;
 };
 
-Filters.distortSine = function(pixels, amount, yamount) {
-  if (amount == null) amount = 0.5;
-  if (yamount == null) yamount = amount;
-  var output = this.createImageData(pixels.width, pixels.height);
-  var dst = output.data;
-  var d = pixels.data;
-  var px = this.createImageData(1,1).data;
-  for (var y=0; y<output.height; y++) {
-    var sy = -Math.sin(y/(output.height-1) * Math.PI*2);
-    var srcY = y + sy * yamount * output.height/4;
-    srcY = Math.max(Math.min(srcY, output.height-1), 0);
 
-    for (var x=0; x<output.width; x++) {
-      var sx = -Math.sin(x/(output.width-1) * Math.PI*2);
-      var srcX = x + sx * amount * output.width/4;
-      srcX = Math.max(Math.min(srcX, output.width-1), 0);
-
-      var rgba = this.bilinearSample(pixels, srcX, srcY, px);
-
-      var off = (y*output.width+x)*4;
-      dst[off] = rgba[0];
-      dst[off+1] = rgba[1];
-      dst[off+2] = rgba[2];
-      dst[off+3] = rgba[3];
-    }
-  }
-  return output;
-};
 
 if (typeof require != 'undefined') {
   exports.Filters = Filters;

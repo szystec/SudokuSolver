@@ -13,14 +13,25 @@ td {
   width: 2.5em;
   height: 2.5em;
 }
+canvas {
+  display: none;
+}
+#imageSuccess {
+  display: none;
+  margin: auto;
+  text-align: center;
+}
+#imageFail {
+  display: none;
+  margin: auto;
+  text-align: center;
+}
 #camImage {
   display: none;
 }
 #camImage.imageProcessed {
   display: block;
-  width: 100%;
   margin: auto;
-  display: none;
 }
 #footer {
   position: fixed;
@@ -29,6 +40,7 @@ td {
   bottom: 0px;
   z-index: 999;
 }
-canvas {
-  display: none;
+.ui-content {
+  margin-bottom: 251px;
+  /* The height of the footer */
 }
