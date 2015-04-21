@@ -21,39 +21,39 @@
     <div data-role="header" data-theme="c">
 
       <h1>Sudoku Photo Solver</h1>
-      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left"><p></p></a>
-      <a href="#cameraPopup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-right ui-btn-c"><p></p></a>
+      <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left">
+        <p></p>
+      </a>
+      <a href="#cameraPopup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-right ui-btn-c">
+        <p></p>
+      </a>
 
       <!-- Camera Popup -->
       <div data-role="popup" id="cameraPopup" data-transition="flip" data-theme="d">
 
         <ul data-role="listview" data-inset="true" style="min-width:210px;">
           <li data-role="list-divider">Choose image source</li>
-          <li data-icon="camera"><a href="#" onclick="capturePhoto()" data-rel="close">Camera</a></li>
-          <li data-icon="grid"><a href="#" onclick="loadPhoto()" data-rel="close">Photo Library</a></li>
+          <li data-icon="camera"><a href="#" class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="" data-inline="true" onclick="capturePhoto()" data-rel="close">Camera</a></li>
+          <li data-icon="grid"><a href="#" class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="" data-inline="true" onclick="loadPhoto()" data-rel="close">Photo Library</a></li>
         </ul>
 
-      </div><!-- /Camera Popup -->
+      </div>
+      <!-- /Camera Popup -->
 
-    </div><!-- /Content Page Header -->
+    </div>
+    <!-- /Content Page Header -->
 
     <!-- Content Page Body-->
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
-    <!--   <div id="ocr">
-        <p>yo
-        </p>
-      </div> -->
-      <!--used for image manipulation -->
-      <img id="camImage" src="" />
-      <canvas id="filterCanvas"></canvas>
 
-    <div id="imageSuccess">
+      <div id="imageSuccess">
         <h2>Your image is loaded</h2>
         <button onclick="processImage()" class="ui-btn ui-btn-inline">Process Image</button>
       </div>
       <div id="imageFail">
-        <h2>Could not load the image! <br /> Please try again.</h2>
+        <h2>Could not load the image!
+          <br /> Please try again.</h2>
       </div>
 
       <!-- Sudoku Grid -->
@@ -182,14 +182,24 @@
         </tbody>
       </table><!-- /Sudoku Grid -->
 
-    </div><!-- /Content Page Body-->
+      <!--   <div id="ocr">
+        <p>yo
+        </p>
+      </div> -->
+      <!--used for image manipulation -->
+      <img id="camImage" src="" />
+      <canvas id="filterCanvas"></canvas>
+
+    </div>
+    <!-- /Content Page Body-->
 
     <!-- Menu Panel content -->
     <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
 
       <div data-role="header">
-        <h1>Menu</h1><br />
-    </div>
+        <h1>Menu</h1>
+        <br />
+      </div>
       <ul data-role="listview">
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
         </li>
@@ -207,17 +217,20 @@
         </li>
       </ul>
 
-    </div><!-- /Menu Panel -->
+    </div>
+    <!-- /Menu Panel -->
 
     <!-- footer -->
     <div data-role="footer" id="footer">
+      <button  onclick="processImage()" class="ui-btn ui-btn-inline">Process Image</button>
+      <button onclick="ocr()" class="ui-btn ui-btn-inline">Read Digits</button>
+    <!--  <button class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="" data-inline="true">Icon + text</button> -->
 
-      <button onclick="ocr()" class="ui-btn ui-btn-inline ui-btn-icon-left">OCR</button>
-      <button onclick="processImage()" class="ui-btn ui-btn-inline ui-btn-icon-left">process</button>
+    </div>
+    <!-- /footer -->
 
-    </div><!-- /footer -->
-
-  </div><!-- /Content Page -->
+  </div>
+  <!-- /Content Page -->
 
   <!-- Resources Scripts-->
   <script type="text/javascript" src="cordova.js"></script>

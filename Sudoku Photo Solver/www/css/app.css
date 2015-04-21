@@ -16,6 +16,10 @@ td {
 canvas {
   display: none;
 }
+#grid {}
+#grid.hide {
+  display: none;
+}
 #imageSuccess {
   display: none;
   margin: auto;
@@ -33,14 +37,19 @@ canvas {
   display: block;
   margin: auto;
 }
+#processingFooter{
+  display: inline;
+  margin-right: 0px;
+}
 #footer {
   position: fixed;
   left: 0px;
   right: 0px;
   bottom: 0px;
   z-index: 999;
+  height: 4em;
 }
 .ui-content {
-  margin-bottom: 251px;
+  margin-bottom: 5em;
   /* The height of the footer */
 }
