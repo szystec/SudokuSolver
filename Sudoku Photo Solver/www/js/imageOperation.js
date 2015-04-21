@@ -38,6 +38,7 @@ function getPhoto() {
 //
 function onFail(message) {
   $("#imageFail").css("display","block");
+  $.mobile.loading( "hide" );
 }
 
 function ocr() {
@@ -59,7 +60,8 @@ function ocr() {
       }
     }
   }
-  $.mobile.loading( "hide" );     
+  $.mobile.loading( "hide" );
+  $(".processButtons").addClass("hide"); 
 //  navigator.camera.cleanup();
 }
 
@@ -78,8 +80,8 @@ function processImage() {
   image.src = canvas.toDataURL("image/jpeg");
 
 //  $("#camImage").addClass("imageProcessed");
-
   this.ocr();
+  $.mobile.loading( "hide" );
 }
 
 // Called when a photo is successfully retrieved
@@ -97,5 +99,6 @@ function onPhotoDataSuccess(imageData) {
   //
   img.src = "data:image/jpeg;base64," + imageData;
   $("#imageSuccess").css("display","block");
+  $(".processButtons").removeClass("hide");
   this.processImage();
 }

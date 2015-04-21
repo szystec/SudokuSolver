@@ -10,11 +10,18 @@ td {
   border: solid thin;
   text-align: center;
   padding: 0;
+  padding-top: 0;
   width: 2.5em;
   height: 2.5em;
+  margin: 0;
 }
 canvas {
   display: none;
+}
+td p {
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
 }
 #grid {}
 #grid.hide {
@@ -37,17 +44,26 @@ canvas {
   display: block;
   margin: auto;
 }
-#processingFooter{
-  display: inline;
-  margin-right: 0px;
-}
 #footer {
   position: fixed;
   left: 0px;
   right: 0px;
   bottom: 0px;
   z-index: 999;
-  height: 4em;
+  height: 6em;
+}
+#processButtons{
+
+}
+.processButtons.hide{
+  display:none;
+}
+.center-wrapper{
+  text-align: center;
+}
+.center-wrapper * {
+  margin: auto;
+  margin-top: 10px;
 }
 .ui-content {
   margin-bottom: 5em;
