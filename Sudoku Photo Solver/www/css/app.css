@@ -23,26 +23,19 @@ td p {
   margin: 0;
   padding: 0;
 }
+#camera.hide{
+  display:none;
+}
 #grid {}
 #grid.hide {
   display: none;
 }
-#imageSuccess {
-  display: none;
-  margin: auto;
-  text-align: center;
-}
-#imageFail {
-  display: none;
-  margin: auto;
-  text-align: center;
-}
 #camImage {
-  display: none;
-}
-#camImage.imageProcessed {
   display: block;
   margin: auto;
+}
+#camImage.imageProcessed {
+  display: none;
 }
 #footer {
   position: fixed;
@@ -50,15 +43,32 @@ td p {
   right: 0px;
   bottom: 0px;
   z-index: 999;
-  height: 6em;
+  height: 7em;
 }
-#processButtons{
+.userInput button {
+
 
 }
-.processButtons.hide{
-  display:none;
+.userInput table {
+  display: inline-block;
+  margin-top: 3px;
+  margin-right: 0.5em;
+  margin-left: 0.5em;
 }
-.center-wrapper{
+.userInput td.noBorder {
+  border: hidden;
+}
+.imageFail {
+  margin: auto;
+  text-align: center;
+}
+.processButtons {
+  margin-bottom: 10em;
+}
+.processButtons.hide, .imageFail.hide {
+  display: none;
+}
+.center-wrapper {
   text-align: center;
 }
 .center-wrapper * {
@@ -66,6 +76,6 @@ td p {
   margin-top: 10px;
 }
 .ui-content {
-  margin-bottom: 5em;
+  margin-bottom: 12em;
   /* The height of the footer */
 }

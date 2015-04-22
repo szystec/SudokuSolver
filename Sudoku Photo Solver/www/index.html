@@ -24,7 +24,7 @@
       <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left">
         <p></p>
       </a>
-      <a href="#cameraPopup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-right ui-btn-c">
+      <a id="camera" href="#cameraPopup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-right ui-btn-c">
         <p></p>
       </a>
 
@@ -33,8 +33,8 @@
 
         <ul data-role="listview" data-inset="true" style="min-width:210px;">
           <li data-role="list-divider">Choose image source</li>
-          <li data-icon="camera"><a href="#" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" onclick="capturePhoto()" data-rel="close">Camera</a></li>
-          <li data-icon="grid"><a href="#" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" onclick="loadPhoto()" data-rel="close">Photo Library</a></li>
+          <li data-icon="camera"><a href="#" onclick="cameraImage()" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" data-rel="close">Camera</a></li>
+          <li data-icon="grid"><a href="#" onclick="libraryImage()" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" data-rel="close">Photo Library</a></li>
         </ul>
 
       </div>
@@ -46,17 +46,13 @@
     <!-- Content Page Body-->
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
-
-      <div id="imageSuccess">
-        <h2>Your image is loaded. Press "Process Image" to continue.</h2>
-      </div>
-      <div id="imageFail">
-        <h2>Could not load the image!
+      <div class="imageFail hide">
+        <h2>Something went wrong!
           <br /> Please try again.</h2>
       </div>
 
       <!-- Sudoku Grid -->
-      <table id="grid" onclick="onTextFieldChanged(event)">
+      <table id="grid" class="" onclick="interact(event)">
         <colgroup>
           <col>
             <col>
@@ -64,29 +60,17 @@
         </colgroup>
         <tbody>
           <tr>
-            <td><p id="00"></p></td>
-            <td><p id="01"></p></td>
-            <td><p id="02"></p></td>
-            <td><p id="03"></p></td>
-            <td><p id="04"></p></td>
-            <td><p id="05"></p></td>
-            <td><p id="06"></p></td>
-            <td><p id="07"></p></td>
-            <td><p id="08"></p></td>
-          </tr>
-          <tr>
-            <td><p id="10"></p></td>
-            <td><p id="11"></p></td>
-            <td><p id="12"></p></td>
+            <td><p id="11" class=""></p></td>
+            <td><p id="12" class=""></p></td>
             <td><p id="13"></p></td>
             <td><p id="14"></p></td>
             <td><p id="15"></p></td>
             <td><p id="16"></p></td>
             <td><p id="17"></p></td>
             <td><p id="18"></p></td>
+            <td><p id="19"></p></td>
           </tr>
           <tr>
-            <td><p id="20"></p></td>
             <td><p id="21"></p></td>
             <td><p id="22"></p></td>
             <td><p id="23"></p></td>
@@ -95,17 +79,9 @@
             <td><p id="26"></p></td>
             <td><p id="27"></p></td>
             <td><p id="28"></p></td>
+            <td><p id="29"></p></td>
           </tr>
-        </tbody>
-
-        <colgroup>
-          <col>
-            <col>
-              <col>
-        </colgroup>
-        <tbody>
           <tr>
-            <td><p id="30"></p></td>
             <td><p id="31"></p></td>
             <td><p id="32"></p></td>
             <td><p id="33"></p></td>
@@ -114,28 +90,7 @@
             <td><p id="36"></p></td>
             <td><p id="37"></p></td>
             <td><p id="38"></p></td>
-          </tr>
-          <tr>
-            <td><p id="40"></p></td>
-            <td><p id="41"></p></td>
-            <td><p id="42"></p></td>
-            <td><p id="43"></p></td>
-            <td><p id="44"></p></td>
-            <td><p id="45"></p></td>
-            <td><p id="46"></p></td>
-            <td><p id="47"></p></td>
-            <td><p id="48"></p></td>
-          </tr>
-          <tr>
-            <td><p id="50"></p></td>
-            <td><p id="51"></p></td>
-            <td><p id="52"></p></td>
-            <td><p id="53"></p></td>
-            <td><p id="54"></p></td>
-            <td><p id="55"></p></td>
-            <td><p id="56"></p></td>
-            <td><p id="57"></p></td>
-            <td><p id="58"></p></td>
+            <td><p id="39"></p></td>
           </tr>
         </tbody>
 
@@ -146,18 +101,47 @@
         </colgroup>
         <tbody>
           <tr>
-            <td><p id="60"></p></td>
+            <td><p id="41"></p></td>
+            <td><p id="42"></p></td>
+            <td><p id="43"></p></td>
+            <td><p id="44"></p></td>
+            <td><p id="45"></p></td>
+            <td><p id="46"></p></td>
+            <td><p id="47"></p></td>
+            <td><p id="48"></p></td>
+            <td><p id="49"></p></td>
+          </tr>
+          <tr>
+            <td><p id="51"></p></td>
+            <td><p id="52"  class="">2</p></td>
+            <td><p id="53"></p></td>
+            <td><p id="54"></p></td>
+            <td><p id="55"></p></td>
+            <td><p id="56"></p></td>
+            <td><p id="57"></p></td>
+            <td><p id="58"></p></td>
+            <td><p id="59"></p></td>
+          </tr>
+          <tr>
             <td><p id="61"></p></td>
             <td><p id="62"></p></td>
             <td><p id="63"></p></td>
             <td><p id="64"></p></td>
             <td><p id="65"></p></td>
-            <td><p id="66"></p></td>
+            <td><p id="66"  class="">3</p></td>
             <td><p id="67"></p></td>
             <td><p id="68"></p></td>
+            <td><p id="69"></p></td>
           </tr>
+        </tbody>
+
+        <colgroup>
+          <col>
+            <col>
+              <col>
+        </colgroup>
+        <tbody>
           <tr>
-            <td><p id="70"></p></td>
             <td><p id="71"></p></td>
             <td><p id="72"></p></td>
             <td><p id="73"></p></td>
@@ -166,9 +150,9 @@
             <td><p id="76"></p></td>
             <td><p id="77"></p></td>
             <td><p id="78"></p></td>
+            <td><p id="79"></p></td>
           </tr>
           <tr>
-            <td><p id="80"></p></td>
             <td><p id="81"></p></td>
             <td><p id="82"></p></td>
             <td><p id="83"></p></td>
@@ -177,6 +161,18 @@
             <td><p id="86"></p></td>
             <td><p id="87"></p></td>
             <td><p id="88"></p></td>
+            <td><p id="89"></p></td>
+          </tr>
+          <tr>
+            <td><p id="91"></p></td>
+            <td><p id="92"></p></td>
+            <td><p id="93"></p></td>
+            <td><p id="94"></p></td>
+            <td><p id="95"></p></td>
+            <td><p id="96"></p></td>
+            <td><p id="97"></p></td>
+            <td><p id="98"></p></td>
+            <td><p id="99"></p></td>
           </tr>
         </tbody>
       </table><!-- /Sudoku Grid -->
@@ -203,10 +199,7 @@
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
         </li>
         <li data-role="list-divider"></li>
-        <li data-icon="heart"><a href="#" data-rel="close">Save Sudoku</a>
-        </li>
-        <li data-role="list-divider"></li>
-        <li data-icon="arrow-u"><a href="#" data-rel="close">Load Sudoku</a>
+        <li data-icon="heart"><a href="#" onclick="newGame()" data-rel="close">New Game</a>
         </li>
         <li data-role="list-divider"></li>
         <li data-icon="info"><a href="#" data-rel="close">Help</a>
@@ -220,19 +213,49 @@
     <!-- /Menu Panel -->
 
     <!-- footer -->
-    <div data-role="footer" id="footer">
+    <div data-role="footer"  data-theme="d" id="footer">
         <!-- button used for processing image -->
         <div class="processButtons center-wrapper hide">
-          <button  onclick="processImage()" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="" data-inline="true" class="ui-btn ui-btn-inline">Process Image</button>
-          <button onclick="ocr()" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" class="ui-btn ui-btn-inline">Read Digits</button>
-
-        <!-- Input table used for Sudoku interaction -->
-      </div id="userInput" class="hide">
-
-        <div>
-
+          <button onclick="manipulateImage()" class="ui-btn ui-btn-inline">Process Image</button>
+          <button onclick="readImage()" class="ui-btn ui-btn-inline">Read Digits</button>
         </div>
+        <!-- Input table used for Sudoku interaction -->
 
+      <div class="userInput">
+
+
+        <table >
+          <tr>
+            <td class="noBorder">
+              <button onclick="solvePuzzle()" class="ui-btn ui-corner-all ui-shadow ui-icon-star ui-btn-icon-right ui-btn-inline">Solve Sudoku</button>
+            </td>
+
+          </tr>
+          <tr>
+            <td class="noBorder">
+              <button onclick="editSudoku()" class="ui-btn ui-corner-all ui-shadow ui-icon-edit ui-btn-icon-right ui-btn-inline">Edit Sudoku</button>
+            </td>
+          </tr>
+        </table>
+
+        <table >
+          <tr>
+            <td><p>0</p></td>
+            <td><p>1</p></td>
+            <td><p>2</p></td>
+            <td><p>3</p></td>
+            <td><p>4</p></td>
+          </tr>
+          <tr>
+            <td><p>5</p></td>
+            <td><p>6</p></td>
+            <td><p>7</p></td>
+            <td><p>8</p></td>
+            <td><p>9</p></td>
+          </tr>
+        </table>
+
+      </div>
     </div>
     <!-- /footer -->
 
@@ -251,7 +274,7 @@
   <!-- Application Scripts -->
   <script type="text/javascript" src="js/viewController.js"></script>
   <script type="text/javascript" src="js/sudokuSolver.js"></script>
-  <script type="text/javascript" src="js/imageOperation.js"></script>
+  <script type="text/javascript" src="js/camera.js"></script>
   <!-- /Application Scripts -->
 
 </body>
