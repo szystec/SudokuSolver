@@ -88,15 +88,15 @@ function interact(evt) {
   var caller = evt.target || evt.srcElement;
 
   if ($("#grid").hasClass("edit")) {
-    var child = $(caller).children().last();
+    var child = $(caller).children("p").first();
 
     if ($("#grid").hasClass("tagged")) {
       var element = $(".tag", "#grid");
       var digit = element.text();
 
-      if (caller.innerText == ""){
-        element.text(child.innerText);
-        child.innerText = digit;
+      if ($(caller).prop("tagName") == "TD"){
+        element.text("");
+        child.text(digit);
       }else {
         element.text(caller.innerText);
         caller.innerText = digit;
@@ -105,13 +105,14 @@ function interact(evt) {
       $(element).removeClass("tag");
 
     } else {
-      if (caller.innerText == "") {
+      if ($(caller).prop("tagName") == "TD") {
         $(child).addClass("tag");
 
       } else {
         $(caller).addClass("tag");
       }
       $("#grid").addClass("tagged");
+      $(caller).css("color", "blue");
     }
   }
 }
