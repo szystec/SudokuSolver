@@ -45,9 +45,8 @@ td p {
   z-index: 999;
   height: 7em;
 }
-.userInput button {
-
-
+.userInput.hide {
+  display: none;
 }
 .userInput table {
   display: inline-block;
@@ -55,8 +54,14 @@ td p {
   margin-right: 0.5em;
   margin-left: 0.5em;
 }
-.userInput td.noBorder {
+.userInput td.noBorder, .editGrid td.noBorder {
   border: hidden;
+}
+.editGrid{
+
+}
+.editGrid.hide{
+  display: none;
 }
 .imageFail {
   margin: auto;

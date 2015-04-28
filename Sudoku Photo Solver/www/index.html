@@ -219,11 +219,9 @@
           <button onclick="manipulateImage()" class="ui-btn ui-btn-inline">Process Image</button>
           <button onclick="readImage()" class="ui-btn ui-btn-inline">Read Digits</button>
         </div>
-        <!-- Input table used for Sudoku interaction -->
+
 
       <div class="userInput">
-
-
         <table >
           <tr>
             <td class="noBorder">
@@ -238,7 +236,8 @@
           </tr>
         </table>
 
-        <table >
+        <!-- Input table used for Sudoku interaction -->
+        <table class="inputTable">
           <tr>
             <td><p>0</p></td>
             <td><p>1</p></td>
@@ -252,6 +251,16 @@
             <td><p>7</p></td>
             <td><p>8</p></td>
             <td><p>9</p></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="editGrid hide">
+        <table>
+          <tr>
+            <td class="noBorder">
+              <button onclick="editDone()" class="ui-btn ui-corner-all ui-shadow ui-icon-check ui-btn-icon-right ui-btn-inline">Done</button>
+            </td>
           </tr>
         </table>
 
