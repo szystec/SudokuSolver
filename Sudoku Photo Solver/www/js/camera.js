@@ -82,8 +82,7 @@ function loadPhoto() {
 function getPhoto() {
   this.camera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 75,
-    //change destinationType to DATA_URL to use in a simulator
-    destinationType: Camera.DestinationType.FILE_URI,
+    destinationType: Camera.DestinationType.DATA_URL,
     sourceType: imageSource,
     targetWidth: 800,
     targetHeight: 800
