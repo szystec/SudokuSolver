@@ -33,8 +33,8 @@
 
         <ul data-role="listview" data-inset="true" style="min-width:210px;">
           <li data-role="list-divider">Choose image source</li>
-          <li data-icon="camera"><a href="#" onclick="cameraImage()" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" data-rel="close">Camera</a></li>
-          <li data-icon="grid"><a href="#" onclick="libraryImage()" class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Processing..." data-inline="true" data-rel="close">Photo Library</a></li>
+          <li data-icon="camera"><a href="#" onclick="cameraImage()" data-rel="close">Camera</a></li>
+          <li data-icon="grid"><a href="#" onclick="libraryImage()" data-rel="close">Photo Library</a></li>
         </ul>
 
       </div>
@@ -60,8 +60,8 @@
         </colgroup>
         <tbody>
           <tr>
-            <td><p id="11" class=""></p></td>
-            <td><p id="12" class=""></p></td>
+            <td><p id="11"></p></td>
+            <td><p id="12"></p></td>
             <td><p id="13"></p></td>
             <td><p id="14"></p></td>
             <td><p id="15"></p></td>
@@ -113,7 +113,7 @@
           </tr>
           <tr>
             <td><p id="51"></p></td>
-            <td><p id="52"  class="">2</p></td>
+            <td><p id="52"></p></td>
             <td><p id="53"></p></td>
             <td><p id="54"></p></td>
             <td><p id="55"></p></td>
@@ -128,7 +128,7 @@
             <td><p id="63"></p></td>
             <td><p id="64"></p></td>
             <td><p id="65"></p></td>
-            <td><p id="66"  class="">3</p></td>
+            <td><p id="66"></p></td>
             <td><p id="67"></p></td>
             <td><p id="68"></p></td>
             <td><p id="69"></p></td>
@@ -182,7 +182,7 @@
         </p>
       </div> -->
       <!--used for image manipulation -->
-      <img id="camImage" src="" />
+      <img id="camImage" src=""/>
       <canvas id="filterCanvas"></canvas>
 
     </div>
@@ -225,13 +225,15 @@
         <table >
           <tr>
             <td class="noBorder">
-              <button onclick="solvePuzzle()" class="ui-btn ui-corner-all ui-shadow ui-icon-star ui-btn-icon-right ui-btn-inline">Solve Sudoku</button>
+              <!--   <button onclick="processImage()" class="ui-btn ui-corner-all ui-shadow ui-icon-star ui-btn-icon-right ui-btn-inline">process</button>-->
+             <button onclick="solvePuzzle()" class="ui-btn ui-corner-all ui-shadow ui-icon-star ui-btn-icon-right ui-btn-inline">Solve Sudoku</button>
             </td>
 
           </tr>
           <tr>
             <td class="noBorder">
-              <button onclick="editSudoku()" class="ui-btn ui-corner-all ui-shadow ui-icon-edit ui-btn-icon-right ui-btn-inline">Edit Sudoku</button>
+              <!--  <button onclick="ocr()" class="ui-btn ui-corner-all ui-shadow ui-icon-edit ui-btn-icon-right ui-btn-inline">ocr</button>-->
+               <button onclick="editSudoku()" class="ui-btn ui-corner-all ui-shadow ui-icon-edit ui-btn-icon-right ui-btn-inline">Edit Sudoku</button>
             </td>
           </tr>
         </table>
@@ -277,7 +279,6 @@
   <script type="text/javascript" src="js/vendor/jquery.mobile-1.4.5.min.js"></script>
   <script type="text/javascript" src="js/vendor/ocrad.js"></script>
   <script type="text/javascript" src="js/vendor/canvasFilters.js"></script>
-  <script type="text/javascript" src="js/vendor/hammer.js"></script>
   <!-- /Resources Scripts-->
 
   <!-- Application Scripts -->

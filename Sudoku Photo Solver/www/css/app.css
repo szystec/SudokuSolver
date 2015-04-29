@@ -23,6 +23,7 @@ td p {
   margin: 0;
   padding: 0;
 }
+#camera{}
 #camera.hide{
   display:none;
 }

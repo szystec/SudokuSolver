@@ -1,5 +1,5 @@
 //loading spinner
-$(document).on("click", ".show-page-loading-msg", function() {    
+/* $(document).on("click", ".show-page-loading-msg", function() {    
   var $this = $(this),
             theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
             msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
@@ -13,7 +13,7 @@ $(document).on("click", ".show-page-loading-msg", function() {    
                 textonly: textonly,
                 html: html    
   });
-});
+}); */
 
 function cameraImage() {
   capturePhoto();
@@ -22,7 +22,6 @@ function cameraImage() {
     $(".imageFail").addClass("hide");
   }
 
-  $(".ui-loader").hide();
 }
 
 function libraryImage() {
@@ -31,18 +30,14 @@ function libraryImage() {
   if (!$(".imageFail").hasClass("hide")) {
     $(".imageFail").addClass("hide");
   }
-  $(".ui-loader").hide();
 }
 
 function manipulateImage() {
   processImage();
-  $(".ui-loader").hide();
 }
 
 function readImage() {
   ocr();
-  $(".ui-loader").hide();
-
 }
 
 function editSudoku() {

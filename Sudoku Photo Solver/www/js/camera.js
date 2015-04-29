@@ -15,7 +15,6 @@ function onDeviceReady() {
 //
 function onFail(message) {
   $(".imageFail").removeClass("hide");
-  $.mobile.loading("hide");
 }
 
 function ocr() {
@@ -24,27 +23,24 @@ function ocr() {
     numeric: true
   });
 
-  var row = 0;
-  var column = 0;
+  var row = 1;
+  var column = 1;
   for (var i = 0; i < ocrText.length; i++) {
     if (ocrText[i] == parseInt(ocrText[i])) {
       var sudokuPlane = document.getElementById(row.toString() + column.toString());
       sudokuPlane.innerHTML = ocrText[i];
       column++;
-      if (column == 9) {
+      if (column == 10) {
         row++;
-        column = 0;
+        column = 1;
       }
     }
   }
 
-
-  $("#camera").addClass("hide");
-  $(img).addClass("imageProcessed");
+//  $(img).addClass("imageProcessed");
   if (!$(".processButtons").hasClass("hide")) {
     $(".processButtons").addClass("hide");
   }
-  $.mobile.loading("hide");
   //  navigator.camera.cleanup();
 }
 
@@ -87,7 +83,7 @@ function getPhoto() {
   this.camera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 75,
     //change destinationType to DATA_URL to use in a simulator
-    destinationType: Camera.DestinationType.DATA_URL,
+    destinationType: Camera.DestinationType.FILE_URI,
     sourceType: imageSource,
     targetWidth: 800,
     targetHeight: 800
