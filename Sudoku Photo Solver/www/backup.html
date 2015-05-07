@@ -30,11 +30,13 @@
 
       <!-- Camera Popup -->
       <div data-role="popup" id="cameraPopup" data-transition="flip" data-theme="d">
+
         <ul data-role="listview" data-inset="true" style="min-width:210px;">
           <li data-role="list-divider">Choose image source</li>
-          <li data-icon="camera"><a href="#" onclick="cameraImage()" data-rel="back">Camera</a></li>
-          <li data-icon="grid"><a href="#" onclick="libraryImage()" data-rel="back">Photo Library</a></li>
+          <li data-icon="camera"><a href="#" onclick="cameraImage()" data-rel="close">Camera</a></li>
+          <li data-icon="grid"><a href="#" onclick="libraryImage()" data-rel="close">Photo Library</a></li>
         </ul>
+
       </div>
       <!-- /Camera Popup -->
 
@@ -44,8 +46,13 @@
     <!-- Content Page Body-->
     <div role="main" class="ui-content jqm-content jqm-fullwidth">
 
+      <div class="imageFail hide">
+        <h2>Something went wrong!
+          <br /> Please try again.</h2>
+      </div>
+
       <!-- Sudoku Grid -->
-      <table id="grid" class="" onclick="gridListener(event)">
+      <table id="grid" class="" onclick="interact(event)">
         <colgroup>
           <col>
             <col>
@@ -170,13 +177,13 @@
         </tbody>
       </table><!-- /Sudoku Grid -->
 
+      <!--   <div id="ocr">
+        <p>yo
+        </p>
+      </div> -->
       <!--used for image manipulation -->
-      <div id="imageDiv">
-        <img id="camImage" src=""/>
-        <canvas id="filterCanvas"></canvas>
-      </div>
-
-
+      <img id="camImage" src=""/>
+      <canvas id="filterCanvas"></canvas>
 
     </div>
     <!-- /Content Page Body-->
@@ -191,7 +198,7 @@
       <ul data-role="listview">
         <li data-icon="home"><a href="#" data-rel="close">Home</a>
         </li>
-        <li data-role="list-divider">Game Controls</li>
+        <li data-role="list-divider">Game Options</li>
         <li data-icon="plus"><a href="#" onclick="newGame()" data-rel="close">New Game</a>
         </li>
         <li data-role="list-divider"></li>
@@ -223,7 +230,7 @@
 
       <div class="playViewFooter">
         <!-- Input table used for Sudoku interaction -->
-        <table id="inputTable" onclick="inputTableListener(event)">
+        <table class="inputTable">
           <tr>
             <td><p>0</p></td>
             <td><p>1</p></td>
@@ -238,9 +245,7 @@
             <td><p>8</p></td>
             <td><p>9</p></td>
           </tr>
-        </table><!-- /Input table used for Sudoku interaction -->
-
-        <!-- Solve and Edit buttons -->
+        </table>
         <table >
           <tr>
             <td class="noBorder">
@@ -253,8 +258,7 @@
               <button onclick="solvePuzzle()" class="ui-btn ui-corner-all ui-shadow ui-icon-star ui-btn-icon-right ui-btn-inline">Solve</button>
             </td>
           </tr>
-        </table><!-- Solve and Edit buttons -->
-
+        </table>
       </div> <!-- /Input table used for Sudoku interaction -->
 
       <!-- Edit View -->

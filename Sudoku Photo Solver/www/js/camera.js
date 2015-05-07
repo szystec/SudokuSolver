@@ -1,4 +1,4 @@
-var camera;
+var deviceCamera; //CHANGE to camera if not working
 var imageSource = 1;
 
 // Wait for device API libraries to load
@@ -8,13 +8,13 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // device APIs are available
 //
 function onDeviceReady() {
-  camera = navigator.camera;
+  deviceCamera = navigator.camera;
 }
 
 // Called if something bad happens.
 //
 function onFail(message) {
-  $(".imageFail").removeClass("hide");
+  alert("Image was not loaded");
 }
 
 function ocr() {
@@ -41,7 +41,7 @@ function ocr() {
   if (!$(".processButtons").hasClass("hide")) {
     $(".processButtons").addClass("hide");
   }
-  //  navigator.camera.cleanup();
+
 }
 
 function processImage() {
@@ -80,7 +80,7 @@ function loadPhoto() {
 }
 
 function getPhoto() {
-  this.camera.getPicture(onPhotoDataSuccess, onFail, {
+  this.deviceCamera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 75,
     destinationType: Camera.DestinationType.DATA_URL,
     sourceType: imageSource,

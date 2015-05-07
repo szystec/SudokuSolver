@@ -16,7 +16,7 @@ td {
   margin: 0;
 }
 canvas {
-  display: none;
+
 }
 td p {
   font-size: 2em;
@@ -46,22 +46,24 @@ td p {
   z-index: 999;
   height: 7em;
 }
-.userInput.hide {
+.playViewFooter.hide {
   display: none;
 }
-.userInput table {
+.playViewFooter table {
   display: inline-block;
   margin-top: 3px;
   margin-right: 0.5em;
   margin-left: 0.5em;
-}
-.userInput td.noBorder, .editGrid td.noBorder {
-  border: hidden;
-}
-.editGrid{
+  margin-bottom: 0.5em;
 
 }
-.editGrid.hide{
+.playViewFooter td.noBorder, .editViewFooter td.noBorder {
+  border: hidden;
+}
+.editViewFooter{
+
+}
+.editViewFooter.hide{
   display: none;
 }
 .imageFail {
@@ -83,5 +85,4 @@ td p {
 }
 .ui-content {
   margin-bottom: 12em;
-  /* The height of the footer */
 }
