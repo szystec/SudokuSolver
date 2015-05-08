@@ -25,6 +25,7 @@ function ocr() {
 
   var row = 1;
   var column = 1;
+
   for (var i = 0; i < ocrText.length; i++) {
     if (ocrText[i] == parseInt(ocrText[i])) {
       var sudokuPlane = document.getElementById(row.toString() + column.toString());
@@ -37,11 +38,9 @@ function ocr() {
     }
   }
 
-//  $(img).addClass("imageProcessed");
   if (!$(".processButtons").hasClass("hide")) {
     $(".processButtons").addClass("hide");
   }
-
 }
 
 function processImage() {
@@ -63,10 +62,12 @@ function processImage() {
 //
 function onPhotoDataSuccess(imageData) {
   var img = document.getElementById('camImage');
-  img.src = "data:image/jpeg;base64," + imageData;
+//  img.src = "data:image/jpeg;base64," + imageData;
+img.src = imageData;
 
   $(".processButtons").removeClass("hide");
-  this.processImage();
+
+this.processImage();
 }
 
 function capturePhoto() {
@@ -82,7 +83,7 @@ function loadPhoto() {
 function getPhoto() {
   this.deviceCamera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 75,
-    destinationType: Camera.DestinationType.DATA_URL,
+    destinationType: Camera.DestinationType.FILE_URI,
     sourceType: imageSource,
     targetWidth: 800,
     targetHeight: 800

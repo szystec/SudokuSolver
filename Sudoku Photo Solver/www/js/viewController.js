@@ -18,7 +18,6 @@
 function cameraImage() {
   this.newGame();
   capturePhoto();
-
 }
 
 function libraryImage() {
