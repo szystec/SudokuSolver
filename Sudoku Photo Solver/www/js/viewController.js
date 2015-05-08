@@ -18,15 +18,11 @@
 function cameraImage() {
   this.newGame();
   capturePhoto();
-  processImage();
-  ocr();
 }
 
 function libraryImage() {
   this.newGame();
   loadPhoto();
-  processImage();
-  ocr();
 }
 
 function manipulateImage() {
@@ -44,6 +40,9 @@ function clearImage() {
   var canvas = document.getElementById('filterCanvas');
   var context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
+  if($("#filterCanvas").hasClass("imageProcessed")){
+    $("#filterCanvas").removeClass("imageProcessed");
+  }
 
   var cleanImage = $('<img id="camImage">');
   cleanImage.attr('src', "");
