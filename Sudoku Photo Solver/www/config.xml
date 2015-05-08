@@ -1,4 +1,11 @@
 <?xml version='1.0' encoding='utf-8' ?>
+<!--
+  config.xml:
+  This file contains configuration information for the PhoneGap application.
+  It is used both to build the app and to set the basic device features.
+
+-->
+
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.sudokuphotosolver" version="1.2.0">
   <name>Sudoku Photo Solver</name>
   <description>
@@ -8,14 +15,17 @@
     Szymon Stec
   </author>
 
+  <!-- mian application file -->
   <content src="index.html" />
 
+  <!-- plugins and featurs -->
   <feature name="http://api.phonegap.com/1.0/device" />
   <feature name="http://api.phonegap.com/1.0/camera" />
   <feature name="StatusBar">
       <param name="ios-package" value="CDVStatusBar" onload="true" />
   </feature>
 
+  <!-- device's preferences -->
   <preference name="orientation" value="portrait" />
   <preference name="fullscreen" value="false" />
   <preference name="target-device" value="universal" />
@@ -24,11 +34,13 @@
   <preference name="android-installLocation" value="auto" />
   <preference name="DisallowOverscroll" value="true"/>
 
+  <!-- plugins used -->
   <gap:plugin name="com.phonegap.plugin.statusbar" />
   <gap:plugin name="org.apache.cordova.camera" />
   <gap:plugin name="org.apache.cordova.console" />
   <gap:plugin name="org.apache.cordova.device" />
 
+  <!-- icon and splashscreen information -->
   <icon src="icon.png" />
   <icon gap:platform="android" gap:density="ldpi" src="res/icon/android/icon-36-ldpi.png" />
   <icon gap:platform="android" gap:density="mdpi" src="res/icon/android/icon-48-mdpi.png" />

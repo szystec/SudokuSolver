@@ -1,4 +1,8 @@
 /*
+ * This is a third party library. It is used for the image manipulation
+ * purposes. This libary was slighty modified to include only
+ * the filters needed for the application.
+ *
  * Author:  Ilmari Heikkinen
  *
  * https://github.com/kig/canvasfilters

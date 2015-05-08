@@ -1,3 +1,11 @@
+/*
+
+app.css:
+ This files contains the dynamic and static stylig rules for the application.
+ Application styling and themeing can be found in /themes/app-theme.css
+*/
+
+/*Sudoku grid*/
 table {
   border-collapse: collapse;
   font-family: Calibri, sans-serif;
@@ -20,6 +28,8 @@ td p {
   margin: 0;
   padding: 0;
 }
+
+/*Image object*/
 #camImage {
   display: none;
 }
@@ -27,6 +37,8 @@ td p {
 #filterCanvas.imageProcessed {
   display: none;
 }
+
+/*main footer*/
 #footer {
   position: fixed;
   left: 0px;
@@ -35,6 +47,8 @@ td p {
   z-index: 999;
   height: 7em;
 }
+
+/* Footer views */
 .playViewFooter.hide {
   display: none;
 }
@@ -52,10 +66,10 @@ td p {
 .editViewFooter.hide {
   display: none;
 }
-.processButtons {
+.processingViewFooter {
   margin-bottom: 10em;
 }
-.processButtons.hide, .imageFail.hide {
+.processingViewFooter.hide, .imageFail.hide {
   display: none;
 }
 .center-wrapper {

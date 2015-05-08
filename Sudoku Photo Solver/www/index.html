@@ -1,5 +1,36 @@
 <!DOCTYPE html>
 <html>
+<!--
+Sudoku Solver via Image Analysis - Cross-platform Mobile Application
+version 1.2.0 06/05/2015
+
+Author: Szymon Stec
+email: szs1@aber.ac.uk
+
+Description:
+Sudoku Solver via Image Analysis is a cross-platform mobile
+application that captures Sudoku Puzzles with the device’s inbuilt camera,
+enables user to play puzzle on the mobile device and provides
+an option to automatically solve it.
+
+Technical Conetnt Structure:
+- plugins - Folder with official PhoneGap plugins used in this project.
+- www - Folder containing main source code for this project.
+	- css - contains content styling code.
+	- img - contains a image of Sudoku plane. Used for local tests.
+	- js - contains application logic source code.
+		- vendor - third party libraries
+	- res - contains application icons and splash screens.
+- config.xml - PhoneGap configuration file. Contains core Cordova API features,
+plugins, and platform-specific settings.
+
+License:
+This software is released under the MIT license.
+
+Index.html:
+This file contins the application view and all the UI components.
+It is a main applications file.
+-->
 
 <head>
   <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
@@ -21,9 +52,11 @@
     <div data-role="header" data-theme="c">
 
       <h1>Sudoku Photo Solver</h1>
+      <!-- Side menu button -->
       <a href="#nav-panel" class="ui-btn ui-btn-inline ui-icon-bars ui-corner-all ui-btn-icon-left">
         <p></p>
       </a>
+      <!-- Camera options button -->
       <a href="#cameraPopup" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-camera ui-btn-icon-right ui-btn-c">
         <p></p>
       </a>
@@ -172,6 +205,7 @@
 
       <!-- used for image manipulation -->
       <div id="imageDiv">
+        <!-- Change camImage src to src="img/image.jpg" for web browser testing-->
         <img id="camImage" src=""/>
         <canvas id="filterCanvas"></canvas>
       </div><!-- /used for image manipulation -->
@@ -181,7 +215,6 @@
 
     <!-- Menu Panel content -->
     <div data-role="panel" data-display="overlay" data-theme="d" id="nav-panel">
-
       <div data-role="header">
         <h1>Menu</h1>
         <br />
@@ -205,22 +238,26 @@
         <li data-icon="comment"><a href="#" data-rel="close">About</a>
         </li>
       </ul>
-
     </div>
     <!-- /Menu Panel -->
 
     <!-- footer -->
     <div data-role="footer"  data-theme="d" id="footer">
 
-      <!-- button used for processing image -->
-      <div class="processButtons center-wrapper hide">
+      <!-- Processing view  -->
+      <div class="processingViewFooter center-wrapper hide">
         <button onclick="manipulateImage()" class="ui-btn ui-btn-inline">Process Image</button>
         <button onclick="readImage()" class="ui-btn ui-btn-inline">Read Digits</button>
-      </div>
+      </div><!-- /Processing view  -->
 
-
+      <!-- Play view (default) -->
       <div class="playViewFooter">
-        <!-- Input table used for Sudoku interaction -->
+        <!-- please uncomment this part of code for local in-browser testing
+        <button onclick="manipulateImage()" class="ui-btn ">Process Image</button>
+        <button onclick="readImage()" class="ui-btn ">Read Digits</button>
+        -->
+
+        <!-- Input table used for interactions with grid -->
         <table id="inputTable" onclick="inputTableListener(event)">
           <tr>
             <td><p>0</p></td>
@@ -236,7 +273,7 @@
             <td><p>8</p></td>
             <td><p>9</p></td>
           </tr>
-        </table><!-- /Input table used for Sudoku interaction -->
+        </table><!-- /Input table used for interactions with grid -->
 
         <!-- Solve and Edit buttons -->
         <table >
@@ -244,16 +281,14 @@
             <td class="noBorder">
               <button onclick="editSudoku()" class="ui-btn ui-corner-all ui-shadow ui-icon-edit ui-btn-icon-right ui-btn-inline">Edit</button>
             </td>
-
           </tr>
           <tr>
             <td class="noBorder">
               <button onclick="solvePuzzle()" class="ui-btn ui-corner-all ui-shadow ui-icon-star ui-btn-icon-right ui-btn-inline">Solve</button>
             </td>
           </tr>
-        </table><!-- Solve and Edit buttons -->
-
-      </div> <!-- /Input table used for Sudoku interaction -->
+        </table><!-- /Solve and Edit buttons -->
+      </div> <!-- /Play view (default) -->
 
       <!-- Edit View -->
       <div class="editViewFooter hide">

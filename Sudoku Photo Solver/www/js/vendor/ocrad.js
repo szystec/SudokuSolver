@@ -1,3 +1,19 @@
+/*
+ * 
+ * This is a third party library. It is used for the optical character recognition purposes. 
+ * This library was not modified. 
+ *
+ * Author:  Kevin Kwok
+ *
+ * https://github.com/antimatter15/ocrad.js
+ * http://antimatter15.com/ocrad.js/demo.html
+ *
+ * Copyright 2014  Kevin Kwok
+ * Released under the GNU GENERAL PUBLIC  license.
+ * https://github.com/antimatter15/ocrad.js/blob/master/LICENSE
+ *
+ */
+
 var OCRAD = (function() {
     function createOcradInstance() {
         var Module;

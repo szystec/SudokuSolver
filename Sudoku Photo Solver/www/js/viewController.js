@@ -1,69 +1,80 @@
-//loading spinner
-/* $(document).on("click", ".show-page-loading-msg", function() {    
-  var $this = $(this),
-            theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
-            msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
-            textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
-            textonly = !!$this.jqmData("textonly");        
-  html = $this.jqmData("html") || "";    
-  $.mobile.loading("show", {            
-    text: msgText,
-                textVisible: textVisible,
-                theme: theme,
-                textonly: textonly,
-                html: html    
-  });
-}); */
+/*
 
+viewController.js:
+ This files contains view manipulation and components invokng functions.
+ All user interactions should pass through this file and be appropriatelly
+ pass further.
+
+*/
+
+// Prepares the application for the new image and calls camera function.
+// This one function call should retrive, manipulate and OCR the image.
+// iOS and Windows Phone break the action after image it retrived.
 function cameraImage() {
   this.newGame();
   capturePhoto();
 }
 
+// Prepares the application for the new image and calls Photo Library function.
+// This one function call should retrive, manipulate and OCR the image.
+// iOS and Windows Phone break the action after image it retrived.
 function libraryImage() {
   this.newGame();
   loadPhoto();
 }
 
+// Used for seperate manipulate image function call.
 function manipulateImage() {
   processImage();
 }
 
+// Used for seperate OCR image function call.
 function readImage() {
   ocr();
 }
 
+// Clears the Canvas and image object.
+// Called before new image is uploaded.
 function clearImage() {
   var img = document.getElementById('camImage');
   img.parentNode.removeChild(img);
 
+  // Canvas clear
   var canvas = document.getElementById('filterCanvas');
   var context = canvas.getContext('2d');
   context.clearRect(0, 0, canvas.width, canvas.height);
-  if($("#filterCanvas").hasClass("imageProcessed")){
+  if ($("#filterCanvas").hasClass("imageProcessed")) {
     $("#filterCanvas").removeClass("imageProcessed");
   }
 
+  //New image object
   var cleanImage = $('<img id="camImage">');
   cleanImage.attr('src', "");
   cleanImage.appendTo('#imageDiv');
 }
 
+// Prepares the application for new game.
+// Clears Canvas and Image object, clears Sudoku grid
 function newGame() {
   this.clearImage();
   this.clearGrid();
 
+  // clears grid tags
   if ($("#grid").hasClass("edit")) {
     this.editDone();
   } else if ($("#grid").hasClass("input")) {
     $("#grid.input").find(".inputCell").css("background-color", "#f9f9f9").removeClass("inputCell");
     $("#grid").removeClass("input");
   }
-  if(!$(".processButtons").hasClass("hide")) {
-    $(".processButtons").addClass("hide");
+
+  // sets defult footer view
+  if (!$(".processingViewFooter").hasClass("hide")) {
+    $(".processingViewFooter").addClass("hide");
   }
 }
 
+// Sets the application interaction to Edit,
+// allowing to move the digits around the grid.
 function editSudoku() {
   $("#grid").addClass("edit");
   $(".playViewFooter").addClass("hide");
@@ -74,6 +85,7 @@ function editSudoku() {
   }
 }
 
+// Restores the default interaction after Edit function.
 function editDone() {
   $("#grid").removeClass("edit");
   $(".playViewFooter").removeClass("hide");
@@ -84,6 +96,17 @@ function editDone() {
   }
 }
 
+// Clear the whole Sudoku grid.
+function clearGrid() {
+  for (var row = 1; row < 10; row++) {
+    for (var column = 1; column < 10; column++) {
+      var cell = document.getElementById(row.toString() + column.toString());
+      cell.innerText = "";
+    }
+  }
+}
+
+// Allows to move the Sudoku digits around the grid.
 function moveDigits(caller) {
   var $child = $(caller).children("p").first();
   var $gridCell = $(caller);
@@ -92,6 +115,7 @@ function moveDigits(caller) {
     var moveFromElement = $(".moveFrom", "#grid");
     var digit = moveFromElement.text();
 
+    //if the element was an empty cell
     if ($gridCell.prop("tagName") == "TD") {
       moveFromElement.text("");
       $child.text(digit);
@@ -103,6 +127,7 @@ function moveDigits(caller) {
     $(moveFromElement).removeClass("moveFrom").css("background-color", "#f9f9f9");
 
   } else {
+    //if the element was an empty cell
     if ($gridCell.prop("tagName") == "TD") {
       $child.addClass("moveFrom").css("background-color", "#98ebe4");
     } else {
@@ -113,6 +138,7 @@ function moveDigits(caller) {
   }
 }
 
+// Tags the Sudoku grid for user input.
 function playGame(caller) {
   var $paragraph = $(caller).children("p").first();
   var $gridCell = $(caller);
@@ -126,6 +152,8 @@ function playGame(caller) {
   $("#grid").addClass("input");
 }
 
+// Sudoku grid listener function.
+// Performs different opperations based on grid status.
 function gridListener(evt) {
   var call = evt.target || evt.srcElement;
 
@@ -136,11 +164,14 @@ function gridListener(evt) {
   }
 }
 
+// Input table listener function.
+// inserts the specified digit in the tagged grid place.
 function inputTableListener(evt) {
   var call = evt.target || evt.srcElement;
 
   if ($("#grid").hasClass("input")) {
     var $inputElement = $(".inputCell", "#grid");
+    // if the tagged cell is empty.
     if ($inputElement.prop("tagName") == "TD") {
       if (call.innerText == "0") {
         $inputElement.children("p").first().text("");
@@ -157,8 +188,14 @@ function inputTableListener(evt) {
   }
 }
 
+// Solver function call.
+// Passes the current grid information to solver object.
+// If the puzzle is solved updates the Sudoku grid with the solution,
+// displays error otherwise.
 function solvePuzzle() {
   var solver = new Solver();
+
+  // get the grid info
   var row, column;
   for (row = 1; row < 10; row++) {
     for (column = 1; column < 10; column++) {
@@ -168,6 +205,7 @@ function solvePuzzle() {
       }
     }
   }
+  // print the solution
   if (solver.initiateSolver()) {
     for (row = 1; row < 10; row++) {
       for (column = 1; column < 10; column++) {
@@ -178,15 +216,5 @@ function solvePuzzle() {
     }
   } else {
     alert("Unable to solve the puzzle!");
-  }
-  //  $.mobile.loading().hide();
-}
-
-function clearGrid() {
-  for (var row = 1; row < 10; row++) {
-    for (var column = 1; column < 10; column++) {
-      var cell = document.getElementById(row.toString() + column.toString());
-      cell.innerText = "";
-    }
   }
 }

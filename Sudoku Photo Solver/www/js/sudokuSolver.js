@@ -1,3 +1,13 @@
+/*
+
+sudokuSolver.js:
+ This files contains the sudolu solver logic algorithm.
+ The solver combines two solving algrorithms, Pattern Matching and Backtracking.
+
+*/
+
+// Solver object constructor with two tables, current Sudoku Grid
+// and candidate values. Tables are hard coded for better performance.
 function Solver() {
   // Main table contating Sudoku grid values and solver input.
   this.sudokuGrid = [
@@ -12,7 +22,7 @@ function Solver() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
 
-  // Table containing allowed cell values based on Sudoku grid
+  // Table containing candidate cell values based on Sudoku grid
   // and Sudoku rules.
   this.allowedValues = [
     [ [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9], [1,2,3,4,5,6,7,8,9],
@@ -55,12 +65,13 @@ function Solver() {
 }
 
 
-//Udates row column and region
+// Function updates candidate values in all the cells
+// affected by new digit insertion.
 Solver.prototype.updateAllowedValues = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
   this.allowedValues[currentRow][currentColumn] = 0;
 
-  //row
+  // update row
   for (var column = 0; column < 9; column++) {
     for (var rValue = 0; rValue < this.allowedValues[currentRow][column].length; rValue++) {
       if (column != currentColumn && this.allowedValues[currentRow][column][rValue] == input) {
@@ -69,7 +80,7 @@ Solver.prototype.updateAllowedValues = function(currentRow, currentColumn) {
     }
   }
 
-  //column
+  // update column
   for (var row = 0; row < 9; row++) {
     for (var cValue = 0; cValue < this.allowedValues[row][currentColumn].length; cValue++) {
       if (row != currentRow && this.allowedValues[row][currentColumn][cValue] == input) {
@@ -78,7 +89,7 @@ Solver.prototype.updateAllowedValues = function(currentRow, currentColumn) {
     }
   }
 
-  //region
+  // update region
   var regionRow = Math.floor(currentRow / 3);
   var regionColumn = Math.floor(currentColumn / 3);
 
@@ -105,7 +116,8 @@ Solver.prototype.setAllowedValues = function() {
   }
 };
 
-//TODO
+// Searches and inserts all Naked Single digits.
+// Returns true if at least one was found.
 Solver.prototype.nakedSingle = function() {
   var foundSingle = false;
 
@@ -121,6 +133,8 @@ Solver.prototype.nakedSingle = function() {
   return foundSingle;
 };
 
+// Validates the repetition of the digits in a current row.
+// returns true if none found.
 Solver.prototype.isRowValid = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
   for (var column = 0; column < 9; column++) {
@@ -131,7 +145,8 @@ Solver.prototype.isRowValid = function(currentRow, currentColumn) {
   return true;
 };
 
-
+// Validates the repetition of the digits in a current column.
+// returns true if none found.
 Solver.prototype.isColumnValid = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
   for (var row = 0; row < 9; row++) {
@@ -142,7 +157,8 @@ Solver.prototype.isColumnValid = function(currentRow, currentColumn) {
   return true;
 };
 
-
+// Validates the repetition of the digits in a current region.
+// returns true if none found.
 Solver.prototype.isRegionValid = function(currentRow, currentColumn) {
   var input = this.sudokuGrid[currentRow][currentColumn];
   var regionRow = Math.floor(currentRow / 3);
@@ -158,15 +174,20 @@ Solver.prototype.isRegionValid = function(currentRow, currentColumn) {
   return true;
 };
 
+// Checks all the grid for the patterns.
+// loops until no patterns were found.
 Solver.prototype.solvePatterns = function() {
+  // add new patterns in this if statement using || assignemnt.
+  // Make sure they return true if found and false if not.
   if (this.nakedSingle()) {
     this.solvePatterns();
   }
   return false;
 };
 
+// Backtracking algorithm logic.
 Solver.prototype.solveBacktracking = function(currentRow, currentColumn) {
-
+  // Backtrack new cell
   currentColumn++;
   if (currentColumn > 8) {
     currentColumn = 0;
@@ -176,30 +197,34 @@ Solver.prototype.solveBacktracking = function(currentRow, currentColumn) {
     }
   }
 
-  // if cell has a predetermined value sanity check if it is valid
-  // with Sudoku rules.
+  // if cell already has a digit check if it is valid with Sudoku rules
+  // Sanity check for incorrect grids.
   if (this.sudokuGrid[currentRow][currentColumn] != 0) {
     if (!(this.isRowValid(currentRow, currentColumn) && this.isColumnValid(currentRow, currentColumn) && this.isRegionValid(currentRow, currentColumn))) {
+      // stop solver if not correct
       return false;
     }
+    // if ok proceed to next cell
     return this.solveBacktracking(currentRow, currentColumn);
 
-    //backtrack
   } else {
+    // Backtracking logic, use only the values from allowedValues table.
     for (var x = 0; x < this.allowedValues[currentRow][currentColumn].length; x++) {
       this.sudokuGrid[currentRow][currentColumn] = this.allowedValues[currentRow][currentColumn][x];
       if (this.isRowValid(currentRow, currentColumn) && this.isColumnValid(currentRow, currentColumn) && this.isRegionValid(currentRow, currentColumn)) {
+        // if the value is valid proceed to the next cell.
         if (this.solveBacktracking(currentRow, currentColumn)) {
           return true;
         }
       }
     }
+    // fall back to previous cell if no more possible combinations.
     this.sudokuGrid[currentRow][currentColumn] = 0;
     return false;
   }
 };
 
-
+// main solver function, initialises solver logic. 
 Solver.prototype.initiateSolver = function() {
   this.setAllowedValues();
   if (this.solvePatterns()) {
