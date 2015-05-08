@@ -18,7 +18,7 @@ function onFail(message) {
 }
 
 function ocr() {
-  var img = document.getElementById('camImage');
+  var img = document.getElementById('filterCanvas');
   var ocrText = OCRAD(img, {
     numeric: true
   });
@@ -41,6 +41,7 @@ function ocr() {
   if (!$(".processButtons").hasClass("hide")) {
     $(".processButtons").addClass("hide");
   }
+  $("#filterCanvas").addClass("imageProcessed");
 
   return true;
 }
@@ -55,22 +56,19 @@ function processImage() {
   var filtered = Filters.filterImage(Filters.threshold, image, 120);
   ctx.putImageData(filtered, 0, 0);
 
-  image.src = canvas.toDataURL("image/jpeg");
-
-  return true;
-//  this.ocr();
+ this.ocr();
 }
 
 // Called when a photo is successfully retrieved
 //
+//
 function onPhotoDataSuccess(imageData) {
   var img = document.getElementById('camImage');
-  img.src = imageData;
-
+//  img.src = "data:image/jpeg;base64," + imageData;
+img.src = imageData;
   $(".processButtons").removeClass("hide");
 
-  return true;
-//  this.processImage();
+ this.processImage();
 }
 
 function capturePhoto() {
