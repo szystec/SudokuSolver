@@ -41,6 +41,8 @@ function ocr() {
   if (!$(".processButtons").hasClass("hide")) {
     $(".processButtons").addClass("hide");
   }
+
+  return true;
 }
 
 function processImage() {
@@ -55,19 +57,20 @@ function processImage() {
 
   image.src = canvas.toDataURL("image/jpeg");
 
-  this.ocr();
+  return true;
+//  this.ocr();
 }
 
 // Called when a photo is successfully retrieved
 //
 function onPhotoDataSuccess(imageData) {
   var img = document.getElementById('camImage');
-//  img.src = "data:image/jpeg;base64," + imageData;
-img.src = imageData;
+  img.src = imageData;
 
   $(".processButtons").removeClass("hide");
 
-this.processImage();
+  return true;
+//  this.processImage();
 }
 
 function capturePhoto() {

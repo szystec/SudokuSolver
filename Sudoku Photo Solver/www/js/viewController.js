@@ -18,11 +18,15 @@
 function cameraImage() {
   this.newGame();
   capturePhoto();
+  processImage();
+  ocr();
 }
 
 function libraryImage() {
   this.newGame();
   loadPhoto();
+  processImage();
+  ocr();
 }
 
 function manipulateImage() {
