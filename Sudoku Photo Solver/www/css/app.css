@@ -15,27 +15,16 @@ td {
   height: 2.5em;
   margin: 0;
 }
-canvas {
-
-}
 td p {
   font-size: 2em;
   margin: 0;
   padding: 0;
 }
-#camera{}
-#camera.hide{
-  display:none;
-}
-#grid {}
-#grid.hide {
+#camImage {
   display: none;
 }
-#camImage {
-  display: block;
-  margin: auto;
-}
-#camImage.imageProcessed {
+#filterCanvas {}
+#filterCanvas.imageProcessed {
   display: none;
 }
 #footer {
@@ -55,20 +44,13 @@ td p {
   margin-right: 0.5em;
   margin-left: 0.5em;
   margin-bottom: 0.5em;
-
 }
 .playViewFooter td.noBorder, .editViewFooter td.noBorder {
   border: hidden;
 }
-.editViewFooter{
-
-}
-.editViewFooter.hide{
+.editViewFooter {}
+.editViewFooter.hide {
   display: none;
-}
-.imageFail {
-  margin: auto;
-  text-align: center;
 }
 .processButtons {
   margin-bottom: 10em;
@@ -84,5 +66,5 @@ td p {
   margin-top: 10px;
 }
 .ui-content {
-  margin-bottom: 12em;
+  margin-bottom: 10em;
 }
