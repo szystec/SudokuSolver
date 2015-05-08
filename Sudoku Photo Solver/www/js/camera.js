@@ -64,8 +64,7 @@ function processImage() {
 //
 function onPhotoDataSuccess(imageData) {
   var img = document.getElementById('camImage');
-  //  img.src = "data:image/jpeg;base64," + imageData;
-  img.src = imageData;
+  img.src = "data:image/jpeg;base64," + imageData;
   $(".processButtons").removeClass("hide");
 
   this.processImage();
@@ -84,7 +83,7 @@ function loadPhoto() {
 function getPhoto() {
   this.deviceCamera.getPicture(onPhotoDataSuccess, onFail, {
     quality: 75,
-    destinationType: Camera.DestinationType.FILE_URI,
+    destinationType: Camera.DestinationType.DATA_URL,
     sourceType: imageSource,
     targetWidth: 800,
     targetHeight: 800
