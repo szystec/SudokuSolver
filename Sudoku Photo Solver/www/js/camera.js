@@ -56,7 +56,7 @@ function processImage() {
   var filtered = Filters.filterImage(Filters.threshold, image, 120);
   ctx.putImageData(filtered, 0, 0);
 
- this.ocr();
+  this.ocr();
 }
 
 // Called when a photo is successfully retrieved
@@ -64,11 +64,11 @@ function processImage() {
 //
 function onPhotoDataSuccess(imageData) {
   var img = document.getElementById('camImage');
-//  img.src = "data:image/jpeg;base64," + imageData;
-img.src = imageData;
+  //  img.src = "data:image/jpeg;base64," + imageData;
+  img.src = imageData;
   $(".processButtons").removeClass("hide");
 
- this.processImage();
+  this.processImage();
 }
 
 function capturePhoto() {
